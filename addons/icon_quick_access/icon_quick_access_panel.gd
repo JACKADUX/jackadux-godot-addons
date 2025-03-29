@@ -1,6 +1,5 @@
 @tool
 extends Control
-@onready var button_update = %ButtonUpdate
 @onready var button_web = %ButtonWeb
 @onready var button_web_2: Button = %ButtonWeb2
 @onready var color_picker_button = %ColorPickerButton
@@ -15,6 +14,7 @@ extends Control
 @onready var size_buttons: HBoxContainer = %SizeButtons
 @onready var size_spin_box: SpinBox = %SizeSpinBox
 @onready var option_button_extension: OptionButton = %OptionButtonExtension
+@onready var button_update: Button = %ButtonUpdate
 
 
 var save_path = ""
@@ -68,6 +68,9 @@ func _ready():
 		update_texture()
 	)
 	button_update.pressed.connect(func():
+		var text = DisplayServer.clipboard_get()
+		if text:
+			svg_text = text
 		_file_path_updated()
 		update_texture()
 	)
