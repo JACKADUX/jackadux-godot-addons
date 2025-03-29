@@ -98,6 +98,7 @@ func _ready():
 		DirAccess.make_dir_recursive_absolute(save_path)
 		if file_system:
 			file_system.scan()
+		_file_path_updated()
 	)
 	save_path = line_edit_path.text
 	button_create_folder.visible = not DirAccess.dir_exists_absolute(save_path)

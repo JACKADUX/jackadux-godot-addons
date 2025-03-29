@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const ICON_TABLER_QUICK_ACCESS_PANEL = preload("res://addons/tabler_quick_access/icon_tabler_quick_access_panel.tscn")
+const ICON_TABLER_QUICK_ACCESS_PANEL = preload("res://addons/icon_quick_access/icon_tabler_quick_access_panel.tscn")
 var pannel 
 
 func _enter_tree():
