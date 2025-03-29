@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://clpug84wm58ox"]
 
-[ext_resource type="Script" uid="uid://desd21he677r" path="res://addons/tabler_quick_access/icon_quick_access_panel.gd" id="1_0b34s"]
+[ext_resource type="Script" uid="uid://desd21he677r" path="res://addons/icon_quick_access/icon_quick_access_panel.gd" id="1_0b34s"]
 
 [sub_resource type="Image" id="Image_mrijk"]
 data = {

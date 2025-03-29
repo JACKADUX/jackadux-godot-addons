@@ -26,4 +26,4 @@ project/assembly_name="JACKADUX Godot Addons"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tabler_quick_access/plugin.cfg")
+enabled=PackedStringArray("res://addons/icon_quick_access/plugin.cfg", "res://addons/tabler_quick_access/plugin.cfg")
