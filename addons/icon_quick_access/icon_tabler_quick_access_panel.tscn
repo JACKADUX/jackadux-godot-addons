@@ -59,33 +59,46 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 4
+columns = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Website : "
+text = "Website"
 
-[node name="ButtonWeb" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonWeb" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Tabler"
 
-[node name="ButtonWeb2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+[node name="ButtonWeb2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Goggle"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ButtonWeb3" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "IconFont"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "File :"
-
-[node name="LineEditPath" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="LineEditPath" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -94,13 +107,13 @@ text = "res://assets/icons"
 placeholder_text = "res://assets/icons"
 expand_to_text_length = true
 
-[node name="ButtonCreateFolder" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonCreateFolder" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Create Folder"
 
-[node name="LineEditName" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="LineEditName" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -108,7 +121,7 @@ size_flags_horizontal = 3
 placeholder_text = "file_name"
 expand_to_text_length = true
 
-[node name="OptionButtonExtension" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="OptionButtonExtension" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 selected = 0
@@ -118,70 +131,77 @@ popup/item_0/id = 0
 popup/item_1/text = "png"
 popup/item_1/id = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Size"
+
+[node name="SizeEnable" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Size :"
-
-[node name="SizeButtons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="SizeButtons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button16" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button16" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "16"
 
-[node name="Button32" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button32" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "32"
 
-[node name="Button48" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button48" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "48"
 
-[node name="Button64" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button64" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "64"
 
-[node name="Button80" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button80" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "80"
 
-[node name="Button96" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button96" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "96"
 
-[node name="Button112" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button112" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "112"
 
-[node name="Button128" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/SizeButtons"]
+[node name="Button128" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3/SizeButtons"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "128"
 
-[node name="SizeSpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="SizeSpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -190,14 +210,24 @@ max_value = 1024.0
 value = 24.0
 allow_greater = true
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Color"
+
+[node name="ColorEnable" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-text = "Color :"
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -243,7 +273,7 @@ text = "Save"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Force Update SVG"
+text = "Paste SVG"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false

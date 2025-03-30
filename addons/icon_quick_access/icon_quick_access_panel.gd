@@ -2,6 +2,9 @@
 extends Control
 @onready var button_web = %ButtonWeb
 @onready var button_web_2: Button = %ButtonWeb2
+@onready var button_web_3: Button = %ButtonWeb3
+
+
 @onready var color_picker_button = %ColorPickerButton
 @onready var button_save = %ButtonSave
 
@@ -15,6 +18,9 @@ extends Control
 @onready var size_spin_box: SpinBox = %SizeSpinBox
 @onready var option_button_extension: OptionButton = %OptionButtonExtension
 @onready var button_update: Button = %ButtonUpdate
+
+@onready var size_enable: CheckButton = %SizeEnable
+@onready var color_enable: CheckButton = %ColorEnable
 
 
 var save_path = ""
@@ -54,6 +60,9 @@ func _ready():
 	)
 	button_web_2.pressed.connect(func():
 		OS.shell_open("https://fonts.google.com/icons?selected=Material+Symbols+Outlined:search:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23FFFFFF")
+	)
+	button_web_3.pressed.connect(func():
+		OS.shell_open("https://www.iconfont.cn/collections/index?spm=a313x.home_index.i3.3.36463a81AwdSdq")
 	)
 	
 	line_edit_path.text_changed.connect(func(t):
@@ -143,12 +152,16 @@ func update_text():
 		return 
 	var svg_helper = SVGHelper.new(svg_text)
 	var color = icon_color.to_html(false)
-	svg_helper.modify_svg_parameter("svg", "fill", "#"+color)
-	svg_helper.modify_svg_parameter("svg", "stroke", "#"+color)
-	svg_helper.modify_svg_parameter("svg", "width", str(icon_size))
-	svg_helper.modify_svg_parameter("svg", "height", str(icon_size))
-	svg_helper.modify_svg_parameter("path", "fill", "#"+color)
-	svg_helper.modify_svg_parameter("path", "stroke", "#"+color)
+	svg_helper._debug()
+	if color_enable.button_pressed:
+		svg_helper.modify_svg_parameter("svg", "fill", "#"+color)
+		svg_helper.modify_svg_parameter("svg", "stroke", "#"+color)
+		svg_helper.modify_svg_parameter("path", "fill", "#"+color)
+		svg_helper.modify_svg_parameter("path", "stroke", "#"+color)
+	if size_enable.button_pressed:
+		svg_helper.modify_svg_parameter("svg", "width", str(icon_size))
+		svg_helper.modify_svg_parameter("svg", "height", str(icon_size))
+	
 	svg_text = svg_helper.get_text()
 	text_edit.text = svg_text
 
