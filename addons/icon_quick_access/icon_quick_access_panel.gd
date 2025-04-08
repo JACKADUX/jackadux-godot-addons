@@ -130,6 +130,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	line_edit_name.text = file.get_file().get_basename()
 	option_button_extension.select(0)
 	svg_text = FileAccess.get_file_as_string(file)
+	_file_path_updated()
 	update_texture()
 
 
@@ -152,7 +153,7 @@ func update_text():
 		return 
 	var svg_helper = SVGHelper.new(svg_text)
 	var color = icon_color.to_html(false)
-	svg_helper._debug()
+	#svg_helper._debug()
 	if color_enable.button_pressed:
 		svg_helper.modify_svg_parameter("svg", "fill", "#"+color)
 		svg_helper.modify_svg_parameter("svg", "stroke", "#"+color)
