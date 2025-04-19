@@ -26,7 +26,7 @@ static func new_http_stream_client(host:String, response_fn:Callable) -> HttpStr
 	var hsc = HttpStreamClient.new()
 	hsc.add_to_group(GROUP_NAME)
 	root.add_child(hsc)
-	hsc.set_host(DeepSeekAPI.ROOT)
+	hsc.set_host(host)
 	hsc.set_response_fn(response_fn)
 	return hsc
 

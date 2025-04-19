@@ -31,6 +31,7 @@ enabled=PackedStringArray("res://addons/handy_nodes/plugin.cfg", "res://addons/i
 [file_customization]
 
 folder_colors={
+"res://addons/handy_nodes/": "orange",
 "res://test/": "red"
 }
 
