@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CursorHelper" load_steps=16 format=3 uid="uid://ci5c8j6to74oo"]
+
+[ext_resource type="Texture2D" uid="uid://cl37ye26vekj3" path="res://addons/handy_nodes/cursor_helper/resource/tile_0028.png" id="1_ywhsr"]
+[ext_resource type="Texture2D" uid="uid://cplolf8ajsrsk" path="res://addons/handy_nodes/cursor_helper/resource/tile_0002.png" id="2_mxnqe"]
+[ext_resource type="Texture2D" uid="uid://ba7ir8ksnusl4" path="res://addons/handy_nodes/cursor_helper/resource/tile_0160.png" id="3_dd6an"]
+[ext_resource type="Texture2D" uid="uid://b0l6felyf0bm2" path="res://addons/handy_nodes/cursor_helper/resource/tile_0136.png" id="4_qcyew"]
+[ext_resource type="Texture2D" uid="uid://b4frdd08snhkv" path="res://addons/handy_nodes/cursor_helper/resource/tile_0003.png" id="5_qhkof"]
+[ext_resource type="Texture2D" uid="uid://b7rxgn2nx3crp" path="res://addons/handy_nodes/cursor_helper/resource/tile_0015.png" id="6_8ckl1"]
+[ext_resource type="Texture2D" uid="uid://dtq448jvr5seo" path="res://addons/handy_nodes/cursor_helper/resource/tile_0180.png" id="7_vf7tl"]
+[ext_resource type="Texture2D" uid="uid://luyk2eejn61u" path="res://addons/handy_nodes/cursor_helper/resource/tile_0001.png" id="8_pnhx3"]
+[ext_resource type="Texture2D" uid="uid://ilt6ykbihwbo" path="res://addons/handy_nodes/cursor_helper/resource/tile_0184.png" id="9_8lwrs"]
+[ext_resource type="Texture2D" uid="uid://dr7eusy3joi57" path="res://addons/handy_nodes/cursor_helper/resource/tile_0140.png" id="10_6inm6"]
+[ext_resource type="Texture2D" uid="uid://chwssmic4byly" path="res://addons/handy_nodes/cursor_helper/resource/tile_0135.png" id="11_3uqvn"]
+[ext_resource type="Texture2D" uid="uid://bnhp7yj630c10" path="res://addons/handy_nodes/cursor_helper/resource/tile_0137.png" id="12_0sbng"]
+[ext_resource type="Texture2D" uid="uid://bjq06rh0g4x1l" path="res://addons/handy_nodes/cursor_helper/resource/tile_0000.png" id="13_7uibl"]
+[ext_resource type="Texture2D" uid="uid://dogbxno8qg2mv" path="res://addons/handy_nodes/cursor_helper/resource/tile_0204.png" id="14_3iqch"]
+[ext_resource type="Script" uid="uid://dwrud0tp20ewv" path="res://addons/handy_nodes/cursor_helper/cursor_helper.gd" id="15_lepog"]
+
+[resource]
+script = ExtResource("15_lepog")
+POINTING_HAND = ExtResource("12_0sbng")
+CAN_DROP = ExtResource("3_dd6an")
+FORBIDDEN = ExtResource("6_8ckl1")
+VSPLIT = ExtResource("14_3iqch")
+HSPLIT = ExtResource("9_8lwrs")
+IBEAM = ExtResource("10_6inm6")
+HELP = ExtResource("7_vf7tl")
+ARROW = ExtResource("1_ywhsr")
+BDIAGSIZE = ExtResource("2_mxnqe")
+FDIAGSIZE = ExtResource("5_qhkof")
+HSIZE = ExtResource("8_pnhx3")
+MOVE = ExtResource("11_3uqvn")
+DRAG = ExtResource("4_qcyew")
+VSIZE = ExtResource("13_7uibl")

@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://b15eef6fao6nk"]
+
+[ext_resource type="Script" uid="uid://dinv8o6f1ludi" path="res://addons/handy_nodes/components/simple_color_picker/simple_color_picker.gd" id="1_miqdv"]
+[ext_resource type="Shader" uid="uid://cq4kby8epqdpm" path="res://addons/handy_nodes/components/simple_color_picker/resource/sv_bar.gdshader" id="2_q4vep"]
+[ext_resource type="Script" uid="uid://b3be8hn7asdcv" path="res://addons/handy_nodes/components/simple_color_picker/tracer.gd" id="3_ibwdk"]
+[ext_resource type="Shader" uid="uid://bg8wmqoixn0fu" path="res://addons/handy_nodes/components/simple_color_picker/resource/hue_bar.gdshader" id="3_nyo1t"]
+[ext_resource type="Texture2D" uid="uid://daupm86rghb11" path="res://addons/handy_nodes/components/simple_color_picker/resource/check_board.svg" id="4_8yrui"]
+[ext_resource type="Shader" uid="uid://c1gf6eu1kk2n7" path="res://addons/handy_nodes/components/simple_color_picker/resource/transparent_bar.gdshader" id="4_a5ldj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ljmh"]
+shader = ExtResource("3_nyo1t")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhy6q"]
+shader = ExtResource("2_q4vep")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y52tk"]
+shader = ExtResource("4_a5ldj")
+
+[node name="SimpleColorPicker" type="GridContainer"]
+offset_right = 232.0
+offset_bottom = 232.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 2
+script = ExtResource("1_miqdv")
+
+[node name="HueRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7ljmh")
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HueTracer" type="Control" parent="HueRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ibwdk")
+shape = 3
+width = 16
+border = 4
+
+[node name="SVRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dhy6q")
+custom_minimum_size = Vector2(480, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SVTracer" type="Control" parent="SVRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ibwdk")
+shape = 1
+width = 16
+border = 4
+
+[node name="FinalColor" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(1, 1, 1, 0.67451)
+
+[node name="TextureRect2" type="TextureRect" parent="FinalColor"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_8yrui")
+expand_mode = 1
+
+[node name="AlphaRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_y52tk")
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AlphaRect"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_8yrui")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="AlphaTracer" type="Control" parent="AlphaRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ibwdk")
+shape = 2
+width = 16
+border = 4

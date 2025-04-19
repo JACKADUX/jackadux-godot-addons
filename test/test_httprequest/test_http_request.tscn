@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://crd3rssfffliv"]
+
+[ext_resource type="Script" uid="uid://b7d455tbxtux7" path="res://test/test_httprequest/test_http_request.gd" id="1_e0vgk"]
+[ext_resource type="Texture2D" uid="uid://co6mwmkgbft4n" path="res://icon.svg" id="2_my7q6"]
+[ext_resource type="Script" uid="uid://bt6tds0lgyobf" path="res://addons/handy_nodes/trigger_reactor/reactor.gd" id="3_7ymcm"]
+[ext_resource type="Script" uid="uid://0syxcf2838lg" path="res://addons/handy_nodes/trigger_reactor/trigger.gd" id="3_s2kg4"]
+
+[node name="TestHttpRequest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e0vgk")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 263.0
+offset_right = 655.0
+offset_bottom = 391.0
+texture = ExtResource("2_my7q6")
+
+[node name="AnimationTrigger" type="Node" parent="TextureRect2"]
+script = ExtResource("3_s2kg4")
+trigger_type = 6
+
+[node name="AnimationReactor" type="Node" parent="TextureRect2/AnimationTrigger"]
+script = ExtResource("3_7ymcm")
+fn_name = "mouse_pressed_released"
+fn_args = [0.2, 1.0, 0.2]
