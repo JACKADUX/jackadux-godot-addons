@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="JACKADUX Godot Addons"
-run/main_scene="uid://crd3rssfffliv"
+run/main_scene="uid://c17rre25fdj2p"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -11,11 +11,7 @@ static func _pivot_offset(control:Control, offset :=Vector2(0.5, 0.5)):
 static func _copy_to_use(control:Control, args:=[], kwargs:={}):
 	var tween = base_tween()
 	
-
-static func test(control:Control, args:=[], kwargs:={}):
-	var tween = base_tween()
 	
-
 static func scale(control:Control, args:=[], kwargs:={}):
 	_pivot_offset(control)
 	base_tween().tween_property(control, "scale", Vector2.ONE*args[0], args[1])

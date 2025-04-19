@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c17rre25fdj2p"]
+
+[ext_resource type="Texture2D" uid="uid://co6mwmkgbft4n" path="res://icon.svg" id="1_gupkk"]
+[ext_resource type="Script" uid="uid://0syxcf2838lg" path="res://addons/handy_nodes/trigger_reactor/trigger.gd" id="2_xxv6f"]
+[ext_resource type="Script" uid="uid://bt6tds0lgyobf" path="res://addons/handy_nodes/trigger_reactor/reactor.gd" id="3_cbls2"]
+
+[node name="TestTriggerReactor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 69.0
+offset_right = 232.0
+offset_bottom = 194.0
+texture = ExtResource("1_gupkk")
+
+[node name="Trigger" type="Node" parent="TextureRect"]
+script = ExtResource("2_xxv6f")
+trigger_type = 3
+metadata/_custom_type_script = "uid://0syxcf2838lg"
+
+[node name="Reactor" type="Node" parent="TextureRect/Trigger"]
+script = ExtResource("3_cbls2")
+fn_name = "mouse_in_out"
+fn_args = [0.2, 1.5, 1.0]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
