@@ -1,0 +1,514 @@
+[gd_scene load_steps=15 format=3 uid="uid://ccenypkymlam0"]
+
+[ext_resource type="Script" uid="uid://dke12matbqnqe" path="res://test/test_mvc/test_mvc.gd" id="1_k1d2f"]
+[ext_resource type="Script" uid="uid://dr54s1dgkvkwe" path="res://addons/handy_nodes/objects/stylebox_circle.gd" id="2_dt30y"]
+[ext_resource type="Script" uid="uid://bsprgm68s2bo" path="res://addons/handy_nodes/mvc_component/view_adapters/button_view_adapter.gd" id="3_dt30y"]
+[ext_resource type="Script" uid="uid://b0ddeg4g3xfmg" path="res://addons/handy_nodes/mvc_component/view_adapters/value_combine_adapter.gd" id="4_c75rh"]
+[ext_resource type="Script" uid="uid://b34ad457xwvey" path="res://addons/handy_nodes/mvc_component/general_controller.gd" id="5_x2o54"]
+[ext_resource type="StyleBox" uid="uid://bjmk4c6i5rbty" path="res://test/test_mvc/default_circle.tres" id="6_8h0i4"]
+[ext_resource type="Resource" uid="uid://dqvwgs313hph1" path="res://test/test_mvc/circle_model_data.tres" id="6_pnxlt"]
+[ext_resource type="Script" uid="uid://r2f1h17oqqs6" path="res://addons/handy_nodes/mvc_component/view_adapters/color_picker_adatper.gd" id="7_x2o54"]
+[ext_resource type="Script" uid="uid://dvlc8dwwp0o5y" path="res://addons/handy_nodes/mvc_component/view_adapters/color_combine_adapter.gd" id="8_pnxlt"]
+[ext_resource type="Script" uid="uid://0syxcf2838lg" path="res://addons/handy_nodes/trigger_reactor/trigger.gd" id="9_rcay0"]
+[ext_resource type="Script" uid="uid://bt6tds0lgyobf" path="res://addons/handy_nodes/trigger_reactor/reactor.gd" id="10_8h0i4"]
+[ext_resource type="Script" uid="uid://bl7s3msyh6a88" path="res://test/test_mvc/value_react_fn.gd" id="11_8h0i4"]
+
+[sub_resource type="StyleBox" id="StyleBox_h5tri"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("2_dt30y")
+radius_offset = 0.0
+color = Color(0, 0, 0, 1)
+outline_width = 0.0
+outline_color = Color(1, 1, 1, 1)
+point_count = 20
+enable_aa = true
+metadata/_custom_type_script = "uid://dr54s1dgkvkwe"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rcay0"]
+
+[node name="TestMvc" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1d2f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="CenterContainer" type="Control" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer/CenterContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CirclePanel" type="PanelContainer" parent="CenterContainer/HBoxContainer/CenterContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBox_h5tri")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/HBoxContainer/CenterContainer/CenterContainer/CirclePanel"]
+layout_mode = 2
+border_color = Color(0, 0.414063, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Reset"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button"]
+script = ExtResource("3_dt30y")
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value = Vector2(200, 200)
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "custom_minimum_size"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="ButtonViewAdapter2" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button"]
+script = ExtResource("3_dt30y")
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value = 0.0
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button/ButtonViewAdapter2"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "radius_offset"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Button2" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "ResetAll
+"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button2"]
+script = ExtResource("3_dt30y")
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value = ExtResource("6_8h0i4")
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Buttons/Button2/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "reset_all"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Presets" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Preset"
+
+[node name="Button3" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcay0")
+text = "三角形"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button3"]
+script = ExtResource("3_dt30y")
+type = 2
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value_on = 3
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button3/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "point_count"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Button4" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcay0")
+text = "五边形"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button4"]
+script = ExtResource("3_dt30y")
+type = 2
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value_on = 5
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button4/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "point_count"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Button5" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rcay0")
+text = "八边形"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button5"]
+script = ExtResource("3_dt30y")
+type = 2
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+metadata/value_on = 8
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button5/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "point_count"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Size" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/Size"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Size"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueCombineAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Size/VBoxContainer" node_paths=PackedStringArray("widgets")]
+script = ExtResource("4_c75rh")
+widgets = [NodePath("../SpinBox"), NodePath("../SpinBox2")]
+metadata/_custom_type_script = "uid://b0ddeg4g3xfmg"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Size/VBoxContainer/ValueCombineAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "custom_minimum_size"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="SpinBox" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/Size/VBoxContainer"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+prefix = "X"
+
+[node name="SpinBox2" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/Size/VBoxContainer"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+prefix = "Y"
+
+[node name="Radius Offset" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/Radius Offset"]
+layout_mode = 2
+text = "Radius Offset"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/Radius Offset"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -100.0
+allow_greater = true
+allow_lesser = true
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Radius Offset/HSlider"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "radius_offset"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="SpinBox" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/Radius Offset"]
+layout_mode = 2
+min_value = -100.0
+allow_greater = true
+allow_lesser = true
+
+[node name="GeneralController2" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Radius Offset/SpinBox"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "radius_offset"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Color" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/Color"]
+layout_mode = 2
+text = "Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer/HBoxContainer/VBoxContainer/Color"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerAdatper" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Color/ColorPickerButton"]
+script = ExtResource("7_x2o54")
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Color/ColorPickerButton/ColorPickerAdatper"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "color"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Outline Width" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/Outline Width"]
+layout_mode = 2
+text = "Outline Width"
+
+[node name="SpinBox2" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/Outline Width"]
+layout_mode = 2
+
+[node name="GeneralController2" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Outline Width/SpinBox2"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "outline_width"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="OutlineColor" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorCombineAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor" node_paths=PackedStringArray("r", "g", "b", "a")]
+script = ExtResource("8_pnxlt")
+r = NodePath("../VBoxContainer/HBoxContainer/HSlider2")
+g = NodePath("../VBoxContainer/HBoxContainer2/HSlider2")
+b = NodePath("../VBoxContainer/HBoxContainer3/HSlider2")
+a = NodePath("../VBoxContainer/HBoxContainer4/HSlider2")
+metadata/_custom_type_script = "uid://dvlc8dwwp0o5y"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/ColorCombineAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "outline_color"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Outline Color"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerAdatper" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer5/ColorPickerButton"]
+script = ExtResource("7_x2o54")
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer5/ColorPickerButton/ColorPickerAdatper"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "outline_color"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+rounded = true
+
+[node name="Label4" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "R 255"
+horizontal_alignment = 1
+
+[node name="ValueTrigger" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer/Label4" node_paths=PackedStringArray("trigger_control")]
+script = ExtResource("9_rcay0")
+trigger_type = 10
+trigger_control = NodePath("../../HSlider2")
+
+[node name="Reactor" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer/Label4/ValueTrigger" node_paths=PackedStringArray("react_control")]
+script = ExtResource("10_8h0i4")
+react_control = NodePath("../..")
+fn_pool = ExtResource("11_8h0i4")
+fn_name = "set_label_text"
+fn_args = ["R %d"]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+rounded = true
+
+[node name="Label4" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "G 255"
+horizontal_alignment = 1
+
+[node name="ValueTrigger" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer2/Label4" node_paths=PackedStringArray("trigger_control")]
+script = ExtResource("9_rcay0")
+trigger_type = 10
+trigger_control = NodePath("../../HSlider2")
+
+[node name="Reactor" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer2/Label4/ValueTrigger" node_paths=PackedStringArray("react_control")]
+script = ExtResource("10_8h0i4")
+react_control = NodePath("../..")
+fn_pool = ExtResource("11_8h0i4")
+fn_name = "set_label_text"
+fn_args = ["G %d"]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+rounded = true
+
+[node name="Label4" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "B 255"
+horizontal_alignment = 1
+
+[node name="ValueTrigger" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer3/Label4" node_paths=PackedStringArray("trigger_control")]
+script = ExtResource("9_rcay0")
+trigger_type = 10
+trigger_control = NodePath("../../HSlider2")
+
+[node name="Reactor" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer3/Label4/ValueTrigger" node_paths=PackedStringArray("react_control")]
+script = ExtResource("10_8h0i4")
+react_control = NodePath("../..")
+fn_pool = ExtResource("11_8h0i4")
+fn_name = "set_label_text"
+fn_args = ["B %d"]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="Label4" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "A 1.00"
+horizontal_alignment = 1
+
+[node name="ValueTrigger" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer4/Label4" node_paths=PackedStringArray("trigger_control")]
+script = ExtResource("9_rcay0")
+trigger_type = 10
+trigger_control = NodePath("../../HSlider2")
+
+[node name="Reactor" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/OutlineColor/VBoxContainer/HBoxContainer4/Label4/ValueTrigger" node_paths=PackedStringArray("react_control")]
+script = ExtResource("10_8h0i4")
+react_control = NodePath("../..")
+fn_pool = ExtResource("11_8h0i4")
+fn_name = "set_label_text"
+fn_args = ["A %0.2f"]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="PointCount" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/PointCount"]
+layout_mode = 2
+text = "Point Count"
+
+[node name="SpinBox2" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/PointCount"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/PointCount/SpinBox2"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "point_count"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Enable AA" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA"]
+layout_mode = 2
+text = "Enable AA"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA/CheckBox"]
+script = ExtResource("3_dt30y")
+type = 1
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA/CheckBox/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "enable_aa"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Button2" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA"]
+layout_mode = 2
+toggle_mode = true
+text = "Enable AA Button"
+
+[node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA/Button2"]
+script = ExtResource("3_dt30y")
+type = 1
+metadata/_custom_type_script = "uid://bsprgm68s2bo"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Enable AA/Button2/ButtonViewAdapter"]
+script = ExtResource("5_x2o54")
+model = ExtResource("6_pnxlt")
+prop_name = "enable_aa"
+metadata/_custom_type_script = "uid://b34ad457xwvey"

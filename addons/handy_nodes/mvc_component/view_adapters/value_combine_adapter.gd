@@ -20,11 +20,10 @@ func get_value() -> Variant:
 				2 : value = Vector2.ZERO
 				3 : value = Vector3.ZERO
 				4 : value = Vector4.ZERO
-		_:
-			return null
-	for i in widgets.size():
-		value[i] = widgets[i].get_value()
-	return value
+			for i in widgets.size():
+				value[i] = widgets[i].get_value()
+			return value
+	return null
 	
 func set_value(value):
 	for i in widgets.size():

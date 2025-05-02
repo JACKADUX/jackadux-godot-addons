@@ -7,6 +7,13 @@ enum Type {
 	AVERAGE,
 }
 
+static func print_info():
+	print(Engine.get_main_loop().root.size)
+	print("screen_get_size:",DisplayServer.screen_get_size())
+	print("screen_get_dpi:",DisplayServer.screen_get_dpi())
+	print("screen_get_max_scale:",DisplayServer.screen_get_max_scale())
+	print("screen_get_scale:",DisplayServer.screen_get_scale())
+
 static func get_scale_factor() -> Vector2:
 	var screen_size = DisplayServer.screen_get_size()
 	var win_size = Engine.get_main_loop().root.size
@@ -21,3 +28,11 @@ static func auto_content_scale(type:=Type.AVERAGE):
 		Type.AVERAGE : res = (factor.x+factor.y)*0.5
 	Engine.get_main_loop().root.content_scale_factor = res
 	
+static func view_scale(factor:float=1):
+	Engine.get_main_loop().root.content_scale_factor *= factor
+
+static func set_view_scale(factor:float=1):
+	Engine.get_main_loop().root.content_scale_factor = factor
+
+static func get_view_scale() -> float:
+	return Engine.get_main_loop().root.content_scale_factor

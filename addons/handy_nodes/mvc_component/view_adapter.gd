@@ -10,10 +10,10 @@ func _ready() -> void:
 	adapt_view()
 
 func adapt_view():  # OVERRIDE
-	pass
-	#view.button_pressed.connect(func():
-		#value_changed.emit()
+	#view.some_signal.connect(func(v):
+		#value_changed.emit(get_value())
 	#)
+	pass
 
 func get_value() -> Variant: # OVERRIDE
 	return 

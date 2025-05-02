@@ -1,31 +1,16 @@
-class_name Trigger extends Node
+class_name Trigger extends BaseTrigger
 
-signal triggered(data:Dictionary)
 
 enum TriggerType {
-				NONE, 
-				MOUSE_IN, MOUSE_OUT, MOUSE_IN_OUT, 
-				PRESSED, RELEASED, PRESSED_RELEASED,
-				DOUBLE_CLICKED,
-				READY, VISIBLITY_CHANGED
-				}
+			NONE, 
+			MOUSE_IN, MOUSE_OUT, MOUSE_IN_OUT, 
+			PRESSED, RELEASED, PRESSED_RELEASED,
+			DOUBLE_CLICKED,
+			READY, VISIBLITY_CHANGED,
+			VALUE_CHANGED
+			}
 
-@export var trigger_control:Control
 @export var trigger_type:TriggerType
-@export var trigger_on_ready := false
-
-func _ready() -> void:
-	if not trigger_control:
-		trigger_control = get_parent()
-	
-	connect_trigger()
-	if not get_tree().root.is_node_ready():
-		await get_tree().root.ready
-	if trigger_on_ready:
-		raise_trigger()
-
-func raise_trigger(data:Dictionary={}):
-	triggered.emit(data)
 	
 func connect_trigger():
 	match trigger_type:
@@ -83,4 +68,8 @@ func connect_trigger():
 		TriggerType.READY:
 			trigger_control.ready.connect(func():
 				raise_trigger()
+			)
+		TriggerType.VALUE_CHANGED:
+			trigger_control.value_changed.connect(func(v):
+				raise_trigger({"value":v})
 			)

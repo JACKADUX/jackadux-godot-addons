@@ -15,6 +15,12 @@ func register_with(object:Object, key:String):
 		func(value): object.set(key, value),
 		func(key): return object.get(key)
 	)
+	
+func clear():
+	module_caller.clear()
+	
+func unregister(key:String):
+	module_caller.erase(key)
 
 func set_value(key:String, value:Variant):
 	if not module_caller.has(key):
@@ -31,3 +37,10 @@ func get_value(key:String, default:Variant=null) -> Variant:
 		return
 	var res = module_caller[key].getter.call(key)
 	return default if res == null else res
+
+func update_all():
+	for key in module_caller:
+		property_updated.emit(key, get_value(key))
+
+func update(key:String):
+	property_updated.emit(key, get_value(key))

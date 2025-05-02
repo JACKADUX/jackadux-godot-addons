@@ -1,7 +1,7 @@
 class_name Reactor extends Node
 
 @export var react_control: Control
-@export var trigger : Trigger
+@export var trigger : BaseTrigger
 
 @export var fn_pool :GDScript
 @export var fn_name: =""

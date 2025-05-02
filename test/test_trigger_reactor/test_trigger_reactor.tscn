@@ -25,8 +25,24 @@ script = ExtResource("2_xxv6f")
 trigger_type = 3
 metadata/_custom_type_script = "uid://0syxcf2838lg"
 
-[node name="Reactor" type="Node" parent="TextureRect/Trigger"]
+[node name="Reactor" type="Node" parent="TextureRect/Trigger" node_paths=PackedStringArray("react_control")]
 script = ExtResource("3_cbls2")
+react_control = NodePath("../../../TextureRect2")
 fn_name = "mouse_in_out"
-fn_args = [0.2, 1.5, 1.0]
+fn_args = [0.2, 2.0, 1.0]
 metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="Reactor2" type="Node" parent="TextureRect/Trigger" node_paths=PackedStringArray("react_control")]
+script = ExtResource("3_cbls2")
+react_control = NodePath("../../../TextureRect2")
+fn_name = "mouse_in_out_rotation"
+fn_args = [0.2, 90.0, 0.0]
+metadata/_custom_type_script = "uid://bt6tds0lgyobf"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 72.0
+offset_right = 495.0
+offset_bottom = 200.0
+texture = ExtResource("1_gupkk")

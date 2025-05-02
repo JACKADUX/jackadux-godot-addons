@@ -23,7 +23,8 @@ func adapt_view():
 				printerr(" '%s' 对象并没有开启 toggle_mode "%[str(view)])
 				return
 			view.toggled.connect(func(toggled_on: bool):
-				var value = get_meta("value_on") if toggled_on else get_meta("value_off")
+				if not toggled_on and not has_meta("value_off"):
+					return 
 				value_changed.emit(get_value())
 			)
 
@@ -48,6 +49,6 @@ func set_value(value:Variant):
 		Type.TOGGLE_VALUE:
 			if value == get_meta("value_on"):
 				view.set_pressed_no_signal(true)
-			elif value == get_meta("value_off"):
+			elif not has_meta("value_off") or value == get_meta("value_off"):
 				view.set_pressed_no_signal(false)
 			
