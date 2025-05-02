@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7o2uicd33dej"]
+
+[ext_resource type="Script" uid="uid://cpfxxrhqo3wo1" path="res://test/test_mvc2/test_mvc_2.gd" id="1_vsctf"]
+[ext_resource type="Script" uid="uid://dr54s1dgkvkwe" path="res://addons/handy_nodes/objects/stylebox_circle.gd" id="2_v0djg"]
+[ext_resource type="Script" uid="uid://b34ad457xwvey" path="res://addons/handy_nodes/mvc_component/general_controller.gd" id="3_x6gi7"]
+[ext_resource type="Resource" uid="uid://b0jkgp5dk0sfj" path="res://test/test_mvc2/circle_main_model_mapper.tres" id="4_st6r8"]
+[ext_resource type="Script" uid="uid://r2f1h17oqqs6" path="res://addons/handy_nodes/mvc_component/view_adapters/color_picker_adatper.gd" id="5_v0djg"]
+[ext_resource type="Script" uid="uid://b0ddeg4g3xfmg" path="res://addons/handy_nodes/mvc_component/view_adapters/value_combine_adapter.gd" id="6_x6gi7"]
+
+[sub_resource type="StyleBox" id="StyleBox_en2xb"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("2_v0djg")
+radius_offset = 0.0
+color = Color(0, 0, 0, 1)
+outline_width = 0.0
+outline_color = Color(1, 1, 1, 1)
+point_count = 20
+enable_aa = true
+metadata/_custom_type_script = "uid://dr54s1dgkvkwe"
+
+[node name="test_mvc2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vsctf")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="CirclePanel" type="PanelContainer" parent="CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_en2xb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Radius Offset"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/HSlider"]
+script = ExtResource("3_x6gi7")
+model = ExtResource("4_st6r8")
+prop_name = "radius_offset"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ColorPickerButton"]
+script = ExtResource("5_v0djg")
+metadata/_custom_type_script = "uid://r2f1h17oqqs6"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ColorPickerButton/ColorPickerAdapter"]
+script = ExtResource("3_x6gi7")
+model = ExtResource("4_st6r8")
+prop_name = "color"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ValueCombineAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("widgets")]
+script = ExtResource("6_x6gi7")
+widgets = [NodePath("../VBoxContainer/SpinBox"), NodePath("../VBoxContainer/SpinBox2")]
+metadata/_custom_type_script = "uid://b0ddeg4g3xfmg"
+
+[node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3/ValueCombineAdapter"]
+script = ExtResource("3_x6gi7")
+model = ExtResource("4_st6r8")
+prop_name = "custom_minimum_size"
+metadata/_custom_type_script = "uid://b34ad457xwvey"
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Size"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+prefix = "X"
+
+[node name="SpinBox2" type="SpinBox" parent="CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+prefix = "Y"

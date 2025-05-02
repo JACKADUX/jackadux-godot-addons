@@ -174,13 +174,13 @@ metadata/_custom_type_script = "uid://b34ad457xwvey"
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rcay0")
-text = "八边形"
+text = "十六边形"
 
 [node name="ButtonViewAdapter" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button5"]
 script = ExtResource("3_dt30y")
 type = 2
 metadata/_custom_type_script = "uid://bsprgm68s2bo"
-metadata/value_on = 8
+metadata/value_on = 16
 
 [node name="GeneralController" type="Node" parent="CenterContainer/HBoxContainer/VBoxContainer/Presets/Button5/ButtonViewAdapter"]
 script = ExtResource("5_x2o54")

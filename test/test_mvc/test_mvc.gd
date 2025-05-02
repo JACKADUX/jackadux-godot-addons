@@ -10,9 +10,9 @@ func _ready() -> void:
 	circle_panel.add_theme_stylebox_override("panel", circle)
 	
 	circle_model_data.register_with(circle_panel, "custom_minimum_size")
-	circle_model_data.register_with(circle_panel, "custom_minimum_size")
 	
-	var props = ["radius_offset", "color", "outline_width", "outline_color", "point_count", "enable_aa"]
+	var props = ["radius_offset", "color", "outline_width", 
+				 "outline_color", "point_count", "enable_aa"]
 	for prop in props:
 		circle_model_data.register_with(circle, prop)
 	
