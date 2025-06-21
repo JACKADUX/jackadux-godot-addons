@@ -3,10 +3,10 @@ extends EditorPlugin
 
 
 func _enter_tree() -> void:
-	# Initialization of the plugin goes here.
 	pass
-
+	#var icon = EditorInterface.get_editor_theme().get_icon("Control","EditorIcons")
+	#add_custom_type("CanvasViewer", "Control", preload("components/canvas_viewer/canvas_viewer.gd"), icon)
 
 func _exit_tree() -> void:
-	# Clean-up of the plugin goes here.
+	#remove_custom_type("CanvasViewer")
 	pass

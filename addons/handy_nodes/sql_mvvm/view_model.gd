@@ -6,7 +6,7 @@ extends RefCounted
 # 	Update
 # 	Read
 # 	Delete
-const DBManager = preload("res://addons/handy_nodes/sql/dbmanager.gd")
+const DBManager = preload("db_manager.gd")
 var db_manager: DBManager
 
 signal event_emited(event:String, data:Dictionary)

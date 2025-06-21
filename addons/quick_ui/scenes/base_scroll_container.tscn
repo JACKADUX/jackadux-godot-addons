@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr1y5t2ln4rbu"]
+
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="1_v5ded"]
+
+[node name="BaseScrollContainer" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SuperContainer" type="Control" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_v5ded")
+metadata/_custom_type_script = "uid://dpxfyfavwj25g"

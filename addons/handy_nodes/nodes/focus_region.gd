@@ -28,3 +28,12 @@ static func install_to(parent:Node) -> FocusRegion:
 	var agent = FocusRegion.new()
 	parent.add_child(agent)
 	return agent
+
+
+static func focus_is_inside(node:Control) -> bool:
+	var focus_node = node.get_viewport().gui_get_focus_owner()
+	if not focus_node:
+		return false
+	if focus_node == node:
+		return true
+	return node.is_ancestor_of(focus_node)

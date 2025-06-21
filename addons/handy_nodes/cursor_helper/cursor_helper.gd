@@ -1,20 +1,20 @@
 class_name CursorHelper extends Resource
 
-@export var POINTING_HAND :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0137.png")
-@export var CAN_DROP :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0160.png")
-@export var FORBIDDEN :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0015.png")
-@export var VSPLIT :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0204.png")
-@export var HSPLIT :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0184.png")
-@export var IBEAM :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0140.png")
-@export var HELP :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0180.png")
+@export var POINTING_HAND :Texture2D = preload("resource/tile_0137.png")
+@export var CAN_DROP :Texture2D = preload("resource/tile_0160.png")
+@export var FORBIDDEN :Texture2D = preload("resource/tile_0015.png")
+@export var VSPLIT :Texture2D = preload("resource/tile_0204.png")
+@export var HSPLIT :Texture2D = preload("resource/tile_0184.png")
+@export var IBEAM :Texture2D = preload("resource/tile_0140.png")
+@export var HELP :Texture2D = preload("resource/tile_0180.png")
 
-@export var ARROW :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0028.png")
-@export var BDIAGSIZE :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0002.png")
-@export var FDIAGSIZE :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0003.png")
-@export var HSIZE :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0001.png")
-@export var MOVE :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0135.png")
-@export var DRAG :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0136.png")
-@export var VSIZE :Texture2D = preload("res://addons/handy_nodes/cursor_helper/resource/tile_0000.png")
+@export var ARROW :Texture2D = preload("resource/tile_0028.png")
+@export var BDIAGSIZE :Texture2D = preload("resource/tile_0002.png")
+@export var FDIAGSIZE :Texture2D = preload("resource/tile_0003.png")
+@export var HSIZE :Texture2D = preload("resource/tile_0001.png")
+@export var MOVE :Texture2D = preload("resource/tile_0135.png")
+@export var DRAG :Texture2D = preload("resource/tile_0136.png")
+@export var VSIZE :Texture2D = preload("resource/tile_0000.png")
 
 var CURSOR_TEXTURE_LIST  := [FDIAGSIZE, VSIZE, BDIAGSIZE, HSIZE]
 var CURSOR_LIST  := [DisplayServer.CURSOR_FDIAGSIZE, DisplayServer.CURSOR_VSIZE, DisplayServer.CURSOR_BDIAGSIZE, DisplayServer.CURSOR_HSIZE]

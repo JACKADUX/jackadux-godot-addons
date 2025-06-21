@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp3f32ipxsi7x"]
+
+[ext_resource type="Script" uid="uid://0sro28e8cfga" path="res://addons/quick_ui/quick_ui_dock.gd" id="1_ndacg"]
+
+[sub_resource type="SVGTexture" id="SVGTexture_ndacg"]
+resource_local_to_scene = false
+resource_name = ""
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#e0e0e0\" d=\"M8 9h7V2l-2 2a6.927 8.938-30 0 0-9 11 4.364 6.234-10 0 1 6-8z\"/></svg>
+"
+saturation = 2.0
+color_map = {
+Color(1, 0.372549, 0.372549, 1): Color(1, 0.47, 0.42, 1),
+Color(0.372549, 1, 0.592157, 1): Color(0.45, 0.95, 0.5, 1),
+Color(1, 0.866667, 0.396078, 1): Color(1, 0.87, 0.4, 1)
+}
+
+[node name="QuickUi" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ndacg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CmdContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "Redo"
+text = "update"
+icon = SubResource("SVGTexture_ndacg")

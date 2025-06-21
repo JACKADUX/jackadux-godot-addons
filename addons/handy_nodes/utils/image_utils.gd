@@ -3,6 +3,8 @@ class_name ImageUtils
 const IMAGE_EXTENSION = ["png", "jpg", "jpeg", "webp", "svg"]
 const IMAGE_FILETER_EXTENSION = ["*.png", "*.jpg", "*.jpeg", "*.webp", "*.svg"]
 
+static var _prev_path := ""
+
 static func is_image_file(path:String) -> bool:
 	return path.get_extension().to_lower()  in IMAGE_EXTENSION
 
@@ -47,10 +49,10 @@ static func get_all_image_path_from(dir_path:String):
 		image_paths.append(dir_path.path_join(file))
 	return image_paths
 
-static func export_image(image:Image, file_path:String):
-	match file_path.get_extension().to_lower() :
+static func export_image(image:Image, file_path:String, option_data:={}):
+	match file_path.get_extension().to_lower():
 		"png": image.save_png(file_path)
-		"jpg","jpeg": image.save_jpg(file_path)
+		"jpg","jpeg": image.save_jpg(file_path, option_data.get("quality", 0.93)) # 0.93是保存原来尺寸的值
 		"webp": image.save_webp(file_path)
 
 static func get_image_data_hash(value:Image):
@@ -145,9 +147,11 @@ static func open_image_dialog(muilty_files:=false) -> Array:
 	var _dialog_title := "选择图片"
 	var files := []
 	if not muilty_files:
-		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILE)
+		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, _prev_path)
 	else:
-		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILES)
+		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILES, _prev_path)
+	if files:
+		_prev_path = files[0].get_base_dir()
 	return files
 
 ## ADVANCE ----------------------------------------------------------------------------------------

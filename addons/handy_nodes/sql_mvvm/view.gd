@@ -1,7 +1,7 @@
 extends PanelContainer
 
-const DBManager = preload("res://addons/handy_nodes/sql/dbmanager.gd")
-const ViewModel = preload("res://addons/handy_nodes/sql/view_model.gd")
+const DBManager = preload("db_manager.gd")
+const ViewModel = preload("view_model.gd")
 var view_model : ViewModel
 
 

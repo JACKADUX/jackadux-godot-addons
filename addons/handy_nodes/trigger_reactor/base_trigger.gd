@@ -16,6 +16,9 @@ func _ready() -> void:
 	if not get_tree().root.is_node_ready():
 		await get_tree().root.ready
 	if trigger_on_ready:
+		var data = {}
+		for key in get_meta_list():
+			data[key] = get_meta(key)
 		raise_trigger()
 
 func raise_trigger(data:Dictionary={}):

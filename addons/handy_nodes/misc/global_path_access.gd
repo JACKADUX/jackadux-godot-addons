@@ -1,4 +1,4 @@
-class_name PathAccess
+class_name GlobalPathAccess
 
 static func get_root_path() -> String:
 	if OS.has_feature("editor"):
