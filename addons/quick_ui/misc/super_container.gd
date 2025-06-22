@@ -1,11 +1,19 @@
 @tool
+#@icon("uid://4w1r4artnqj6")
 class_name SuperContainer extends Control
 
 signal type_changed(node:Node)
 
 @export_tool_button("change_type") var change_type_button = _change_type
-
-var nodes = ["VBox","HBox","VFlow","HFlow", "VSplit", "HSplit","Grid"]
+@export var color := Color.RED:
+	set(v):
+		color = v
+		queue_redraw()
+@export var width := -1:
+	set(v):
+		width = v
+		queue_redraw()
+var nodes = ["VBoxContainer","HBoxContainer","VFlowContainer","HFlowContainer", "VSplitContainer", "HSplitContainer","GridContainer"]
 
 func clear():
 	for child in get_children():
@@ -19,8 +27,10 @@ func _change_type():
 	if not Engine.is_editor_hint():
 		return 
 	var popup_menu = PopupMenu.new()
+	var editor_theme = EditorInterface.get_editor_theme()
 	for node in nodes:
-		popup_menu.add_item(node)
+		var icon = editor_theme.get_icon(node, "EditorIcons")
+		popup_menu.add_icon_item(icon, node)
 	popup_menu.index_pressed.connect(func(idx):
 		var node = change_type(nodes[idx])
 		if not node:
@@ -44,16 +54,22 @@ func change_type(type_name:String):
 	node.unique_name_in_owner = unique_name_in_owner
 	node.set_script(get_script())
 	replace_by(node, true)
+	node.color = color
 	type_changed.emit(node)
 	return node
 	
 func _get_type_node(type_name:String) -> Node:
 	match type_name:
-		"VBox": return VBoxContainer.new()
-		"HBox": return HBoxContainer.new()
-		"VFlow": return VFlowContainer.new()
-		"HFlow": return HFlowContainer.new()
-		"VSplit": return VSplitContainer.new()
-		"HSplit": return HSplitContainer.new()
-		"Grid": return GridContainer.new()
+		"VBoxContainer": return VBoxContainer.new()
+		"HBoxContainer": return HBoxContainer.new()
+		"VFlowContainer": return VFlowContainer.new()
+		"HFlowContainer": return HFlowContainer.new()
+		"VSplitContainer": return VSplitContainer.new()
+		"HSplitContainer": return HSplitContainer.new()
+		"GridContainer": return GridContainer.new()
 	return 
+
+func _draw() -> void:
+	if not Engine.is_editor_hint():
+		return 
+	draw_rect(Rect2(Vector2.ZERO, size), color, false, width)

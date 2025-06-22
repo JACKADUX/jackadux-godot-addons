@@ -7,13 +7,6 @@ func _ready():
 	pass
 
 """
-
-static func get_icon_string() -> String:
-	return "GDScript"
-
-static func get_title() -> String:
-	return "CreateTestScene"
-
 static func execute():
 	DisplayServer.dialog_input_text("创建测试场景:", "如果想取消返回空名称", "", func(text:String):
 		create_test_scene(text, "res://test")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnd8ki0ekefnv"]
+
+[ext_resource type="Script" uid="uid://74lrym6k1myx" path="res://test/test_calculate/test_calculate.gd" id="1_wrlo6"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="2_3rn5v"]
+[ext_resource type="PackedScene" uid="uid://b085j88bw4ik0" path="res://addons/quick_ui/scenes/base_panel_container.tscn" id="3_2i3dm"]
+
+[node name="TestCalculate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wrlo6")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SuperContainer" type="HSplitContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_3rn5v")
+
+[node name="BaseScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SuperContainer" type="VSplitContainer" parent="BaseScrollContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_3rn5v")
+
+[node name="PanelContainer2" parent="." instance=ExtResource("3_2i3dm")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="SuperContainer" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("2_3rn5v")
+
+[editable path="PanelContainer2"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://d26l17rt1h5m1"]
+
+[ext_resource type="Script" uid="uid://ciohcnyj5685w" path="res://components/page_handler/page_handler.gd" id="1_sp4pn"]
+[ext_resource type="Texture2D" uid="uid://dq61aedrohe4j" path="res://components/page_handler/resource/page_first.svg" id="2_lq38m"]
+[ext_resource type="Texture2D" uid="uid://dy5g5g85slri8" path="res://components/page_handler/resource/page_left.svg" id="3_dfy5t"]
+[ext_resource type="Texture2D" uid="uid://doehwxuk1cpe8" path="res://components/page_handler/resource/page_right.svg" id="4_pv4al"]
+[ext_resource type="Texture2D" uid="uid://da0xwgbk55lq6" path="res://components/page_handler/resource/page_last.svg" id="5_0osdi"]
+
+[node name="PageHandler" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_sp4pn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FirstButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("2_lq38m")
+icon_alignment = 1
+
+[node name="PrevButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("3_dfy5t")
+icon_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "第 1 页  |  总共 1 页"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("4_pv4al")
+icon_alignment = 1
+
+[node name="LastButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("5_0osdi")
+icon_alignment = 1
