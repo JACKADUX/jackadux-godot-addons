@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfmuxasd5t5s1"]
+
+[ext_resource type="Script" uid="uid://dcfjd5okgl2g0" path="res://addons/namespace_manager/namespace_panel/package_data_panel.gd" id="1_yes4x"]
+
+[node name="PackageDataPanel" type="HBoxContainer"]
+script = ExtResource("1_yes4x")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "x"

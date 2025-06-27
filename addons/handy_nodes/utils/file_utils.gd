@@ -1,14 +1,32 @@
 class_name FileUtils
 
-static func delet_folder(source_folder:String) -> bool:
+static func get_file_name_unique(file_path:String, max_counter:= 100) -> String:
+	if not FileAccess.file_exists(ProjectSettings.globalize_path(file_path)):
+		return file_path
+	var basename = file_path.get_basename()
+	var extension = file_path.get_extension()
+	var counter = 1
+	while true:
+		# file_path = "basename (counter).extension"
+		file_path = ProjectSettings.globalize_path("%s (%d).%s"%[basename, counter, extension])
+		if not FileAccess.file_exists(file_path):
+			break
+		counter += 1
+		if counter > max_counter:
+			# 如果超出最大值 直接使用当前时间戳保存 
+			file_path = "%s (%d).%s"%[basename, Time.get_ticks_usec(), extension]
+			break
+	return file_path
+
+static func delete_folder(source_folder:String) -> bool:
 	assert(DirAccess.dir_exists_absolute(source_folder))
 	for file in DirAccess.get_files_at(source_folder):
 		DirAccess.remove_absolute(source_folder.path_join(file))
 	for folder in DirAccess.get_directories_at(source_folder):
-		delet_folder(source_folder.path_join(folder))
+		delete_folder(source_folder.path_join(folder))
 	DirAccess.remove_absolute(source_folder)
 	return true
-	
+
 static func unzip_file(source_file:String, target_path:String) -> bool:
 	assert(DirAccess.dir_exists_absolute(target_path))
 	var reader := ZIPReader.new()
@@ -31,6 +49,35 @@ static func unzip_file(source_file:String, target_path:String) -> bool:
 	reader.close()
 	return true
 	
+
+static var prev_opened_directory :String
+static func file_dialog(title:String="Files", filter=[], mode=DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, current_directory: String="", filename: String="") -> Array:
+	var files = []
+	var blocker = AwaitBloker.new()
+	var _on_folder_selected = func(status:bool, selected_paths:PackedStringArray, selected_filter_index:int):
+		if not status:
+			return
+		files.append_array(selected_paths)
+		if files:
+			var file :String = files[0]
+			if DirAccess.dir_exists_absolute(file):
+				prev_opened_directory = file
+			else:
+				prev_opened_directory = file.get_base_dir()
+			prints("prev_opened_directory",prev_opened_directory)
+		blocker.go_on_deferred()
+	if not prev_opened_directory:
+		prev_opened_directory = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+	if not current_directory:
+		current_directory = prev_opened_directory
+	DisplayServer.file_dialog_show(title, current_directory, filename,false,
+								mode,
+								filter,
+								_on_folder_selected)
+	await blocker.continued
+	return files
+
+
 
 class NaturalSort:
 	# NOTE: 加载本地路径的文件时可以按照文件夹中的顺序排序

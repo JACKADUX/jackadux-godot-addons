@@ -126,6 +126,7 @@ func update_import_scenes():
 			if scene_data.get("is_reference", true):
 				node.owner = root
 			else:
+				node.scene_file_path = ""
 				recursive_own_children_to_scene(node, root)
 				
 		)

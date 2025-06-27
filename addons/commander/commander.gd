@@ -23,7 +23,12 @@ func _exit_tree() -> void:
 static func cmd_test():
 	print("abc")
 
-static func cmd_plugin_toggler():
+static func cmd_plugin_toggler_quick_ui():
 	var plugin_name = "quick_ui"
+	EditorInterface.set_plugin_enabled(plugin_name, false)
+	EditorInterface.set_plugin_enabled(plugin_name, true)
+
+static func cmd_plugin_toggler_namespace_manager():
+	var plugin_name = "namespace_manager"
 	EditorInterface.set_plugin_enabled(plugin_name, false)
 	EditorInterface.set_plugin_enabled(plugin_name, true)

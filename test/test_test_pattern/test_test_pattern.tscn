@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhg06xk8nlam7"]
+
+[ext_resource type="Script" uid="uid://d3gi5vhnad5va" path="res://test/test_test_pattern/test_test_pattern.gd" id="1_4gevl"]
+
+[node name="TestTestPattern" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4gevl")
