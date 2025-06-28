@@ -6,6 +6,8 @@
 func update(package_paths:PackedStringArray) -> Array:
 	var files = []
 	for package_path in package_paths:
+		if not DirAccess.dir_exists_absolute(package_path):
+			continue
 		var namespace_file = package_path.path_join("_namespace.gd")
 		var namespace_script :GDScript
 		if not FileAccess.file_exists(namespace_file):
@@ -18,6 +20,9 @@ func update(package_paths:PackedStringArray) -> Array:
 	return files
 
 func generate(root_path: String) -> String:
+	var main_class_name = root_path.get_file().to_pascal_case()
+	if not main_class_name:
+		return ""
 	var output := PackedStringArray()
 	_generate_recursive(root_path, root_path, "", output, 0)
 	
@@ -28,7 +33,7 @@ func generate(root_path: String) -> String:
 	# 添加文件头
 	var header := PackedStringArray()
 	header.append("# Auto-generated namespace file. Do not edit manually!")
-	header.append("class_name NS_%s extends NAMESPACE"%root_path.get_file().to_pascal_case())
+	header.append("class_name NS_%s extends NAMESPACE"%main_class_name)
 	header.append("")
 	output = header + output
 	var output_str = "\n".join(output)

@@ -28,15 +28,13 @@ func _ready() -> void:
 	update_namespace()
 
 func save_data():
-	var settings = EditorInterface.get_editor_settings()
-	settings.set_setting("namespace_manager/package_datas", serialize())
+	ProjectSettings.set_setting("namespace_manager/package_datas", serialize())
 
 
 func load_data():
 	var sk_package_datas = "namespace_manager/package_datas"
-	var settings = EditorInterface.get_editor_settings()
-	if settings.has_setting(sk_package_datas):
-		deserialize(settings.get_setting(sk_package_datas))
+	if ProjectSettings.has_setting(sk_package_datas):
+		deserialize(ProjectSettings.get_setting(sk_package_datas))
 	update()
 	
 func serialize() -> Dictionary:
@@ -85,18 +83,7 @@ func update():
 func update_namespace():
 	var paths = package_datas.filter(func(pd): return pd.enable).map(func(pd): return pd.path)
 	var files = code_generater.update(paths)
-	
-	var not_enabled_paths = package_datas.filter(func(pd): return not pd.enable).map(func(pd): return pd.path)
-	var file_changed = false
-	
-	for path in not_enabled_paths:
-		var namespace_file = path.path_join("_namespace.gd")
-		if FileAccess.file_exists(namespace_file):
-			DirAccess.remove_absolute(namespace_file)
-			file_changed = true
-			files.append(namespace_file)
 	if files:
-		#EditorInterface.get_resource_filesystem().reimport_files(files)
 		EditorInterface.get_resource_filesystem().scan.call_deferred()
 	
 
