@@ -51,21 +51,16 @@ static func unzip_file(source_file:String, target_path:String) -> bool:
 	
 
 static var prev_opened_directory :String
-static func file_dialog(title:String="Files", filter=[], mode=DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, current_directory: String="", filename: String="") -> Array:
-	var files = []
-	var blocker = AwaitBloker.new()
-	var _on_folder_selected = func(status:bool, selected_paths:PackedStringArray, selected_filter_index:int):
-		if not status:
-			return
-		files.append_array(selected_paths)
-		if files:
-			var file :String = files[0]
-			if DirAccess.dir_exists_absolute(file):
-				prev_opened_directory = file
-			else:
-				prev_opened_directory = file.get_base_dir()
-			prints("prev_opened_directory",prev_opened_directory)
-		blocker.go_on_deferred()
+static func file_dialog(callback:Callable, title:String="File Dialog", filter=[], mode=DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, current_directory: String="", filename: String=""):
+	var _on_folder_selected = func(status:bool, selected_paths:PackedStringArray, _selected_filter_index:int):
+		if not status or not selected_paths:
+			return 
+		var file :String = selected_paths[0]
+		if DirAccess.dir_exists_absolute(file):
+			prev_opened_directory = file
+		else:
+			prev_opened_directory = file.get_base_dir()
+		callback.call(selected_paths)
 	if not prev_opened_directory:
 		prev_opened_directory = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 	if not current_directory:
@@ -74,10 +69,18 @@ static func file_dialog(title:String="Files", filter=[], mode=DisplayServer.FILE
 								mode,
 								filter,
 								_on_folder_selected)
-	await blocker.continued
-	return files
 
+static func open_folder_dialog(callback:Callable, title:String="Open Dir", current_directory: String=""):
+	file_dialog(callback, title, [], DisplayServer.FileDialogMode.FILE_DIALOG_MODE_OPEN_DIR, current_directory, "")
 
+static func open_file_dialog(callback:Callable, title:String="Open File", filter=[], current_directory: String="", filename:String=""):
+	file_dialog(callback, title, filter, DisplayServer.FileDialogMode.FILE_DIALOG_MODE_OPEN_FILE, current_directory, filename)
+
+static func open_files_dialog(callback:Callable, title:String="Open Files", filter=[], current_directory: String="", filename:String=""):
+	file_dialog(callback, title, filter, DisplayServer.FileDialogMode.FILE_DIALOG_MODE_OPEN_FILES, current_directory, filename)
+
+static func save_file_dialog(callback:Callable, title:String="Save File", filter=[], current_directory: String="", filename:String=""):
+	file_dialog(callback, title, filter, DisplayServer.FileDialogMode.FILE_DIALOG_MODE_SAVE_FILE, current_directory, filename)
 
 class NaturalSort:
 	# NOTE: 加载本地路径的文件时可以按照文件夹中的顺序排序

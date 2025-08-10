@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://ggppic28bdfx"]
+
+[ext_resource type="Script" uid="uid://dd1dgxkt2xyn4" path="res://addons/handy_nodes/components/popup_manager/dialogs/custom_confirm_dialog/confirm_dialog.gd" id="1_c6bts"]
+
+[node name="ConfirmDialog" type="PanelContainer"]
+offset_right = 288.0
+offset_bottom = 132.0
+theme_type_variation = &"panel_custom_overlay"
+script = ExtResource("1_c6bts")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Title"
+horizontal_alignment = 1
+
+[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "context"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"btn_contained_4_confirm"
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"btn_contained_5_cancel"
+text = "Cancel"
+
+[node name="OptionButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"btn_contained_4_confirm"
+text = "<Option>"

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3aocsoqaoxfj"]
+
+[ext_resource type="Script" uid="uid://orb70os4ae7r" path="res://addons/handy_nodes/components/popup_manager/dialogs/process_dialog/process_dialog.gd" id="1_2o30p"]
+[ext_resource type="Shader" uid="uid://bysgnfj0ijiht" path="res://addons/handy_nodes/components/popup_manager/dialogs/resource/rotate.gdshader" id="2_h1fci"]
+[ext_resource type="Texture2D" uid="uid://b2vcf6uflbwgx" path="res://addons/handy_nodes/components/popup_manager/dialogs/resource/loading_circle.png" id="3_efabg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_juuli"]
+shader = ExtResource("2_h1fci")
+shader_parameter/speed = 10.0
+
+[node name="ProcessDialog" type="HBoxContainer"]
+theme_override_constants/separation = 8
+script = ExtResource("1_2o30p")
+
+[node name="Loop" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_juuli")
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("3_efabg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Processing..."

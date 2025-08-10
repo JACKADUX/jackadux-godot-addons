@@ -26,8 +26,9 @@ func remove_child_and_free(value:Node):
 func _change_type():
 	if not Engine.is_editor_hint():
 		return 
+	var editor_interface = Engine.get_singleton("EditorInterface")
 	var popup_menu = PopupMenu.new()
-	var editor_theme = EditorInterface.get_editor_theme()
+	var editor_theme = editor_interface.get_editor_theme()
 	for node in nodes:
 		var icon = editor_theme.get_icon(node, "EditorIcons")
 		popup_menu.add_icon_item(icon, node)
@@ -36,15 +37,15 @@ func _change_type():
 		if not node:
 			popup_menu.queue_free()
 			return 
-		EditorInterface.edit_node(node)
+		editor_interface.edit_node(node)
 		popup_menu.queue_free()
 		queue_free()
 	)
 	popup_menu.popup_hide.connect(func():
 		popup_menu.queue_free()
 	)
-	var mp = EditorInterface.get_base_control().get_global_mouse_position()
-	EditorInterface.popup_dialog(popup_menu, Rect2i(mp+Vector2(0, 20), Vector2.ZERO))
+	var mp = editor_interface.get_base_control().get_global_mouse_position()
+	editor_interface.popup_dialog(popup_menu, Rect2i(mp+Vector2(0, 20), Vector2.ZERO))
 
 func change_type(type_name:String):
 	var node = _get_type_node(type_name)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1at74nvm4b4q"]
+
+[ext_resource type="PackedScene" uid="uid://ggppic28bdfx" path="res://addons/handy_nodes/components/popup_manager/dialogs/custom_confirm_dialog/confirm_dialog.tscn" id="1_7fscb"]
+[ext_resource type="Script" uid="uid://dw64iyq8uu5ly" path="res://addons/handy_nodes/components/popup_manager/dialogs/custom_input_dialog/input_dialog.gd" id="2_3fahy"]
+
+[node name="InputDialog" instance=ExtResource("1_7fscb")]
+script = ExtResource("2_3fahy")
+
+[node name="TitleLabel" parent="MarginContainer/VBoxContainer" index="0"]
+text = "Title"
+
+[node name="ContentLabel" parent="MarginContainer/VBoxContainer" index="1"]
+visible = false
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2

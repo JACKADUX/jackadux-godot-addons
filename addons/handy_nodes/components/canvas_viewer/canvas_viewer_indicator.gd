@@ -1,5 +1,5 @@
 # class_name CanvasIndicator 
-extends Node2D
+extends Control
 
 const CanvasViewer = preload("canvas_viewer.gd")
 @export var canvas_viewer:CanvasViewer

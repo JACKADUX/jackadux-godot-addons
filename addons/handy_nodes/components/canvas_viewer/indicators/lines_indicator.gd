@@ -7,6 +7,7 @@ extends "../canvas_viewer_indicator.gd"
 
 func clear():
 	lines.clear()
+	colors.clear()
 	queue_redraw()
 
 func add_line(p1:Vector2, p2:Vector2, color:Color):

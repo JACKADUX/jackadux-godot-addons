@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpjd37xmnbsju"]
+
+[ext_resource type="Script" uid="uid://brt2lct2f3bw8" path="res://addons/handy_nodes/components/popup_manager/dialogs/message_dialog/message_dialog.gd" id="1_fy7yb"]
+[ext_resource type="Texture2D" uid="uid://dlleyxpfjbh7x" path="res://addons/handy_nodes/components/popup_manager/dialogs/resource/alert_triangle.png" id="2_iu3p3"]
+[ext_resource type="Texture2D" uid="uid://kve0ov2r834g" path="res://addons/handy_nodes/components/popup_manager/dialogs/resource/close.png" id="3_brbo2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6qyt"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MessageBox" type="PanelContainer"]
+offset_right = 276.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6qyt")
+script = ExtResource("1_fy7yb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.160156, 0.160156, 0.160156, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_iu3p3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.09375, 0.09375, 0.09375, 1)
+theme_override_font_sizes/font_size = 16
+text = "Message"
+
+[node name="CloseButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("3_brbo2")
+flat = true
+expand_icon = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+autostart = true

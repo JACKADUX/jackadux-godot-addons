@@ -107,6 +107,8 @@ func update_import_scenes():
 		var scene_path :String = scene_data.get("path", "")
 		if not scene_path or scene_path.get_extension() != "tscn":
 			continue
+		if not FileAccess.file_exists(scene_path):
+			continue
 		if not scene_name:
 			scene_name = scene_path.get_file().get_basename()
 		var scene :PackedScene = load(scene_path)

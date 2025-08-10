@@ -12,8 +12,12 @@ config_version=5
 
 config/name="JACKADUX Godot Addons"
 run/main_scene="uid://ciyo14lnfq2fk"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PopupManager="*res://addons/handy_nodes/components/popup_manager/popup_manager.tscn"
 
 [display]
 

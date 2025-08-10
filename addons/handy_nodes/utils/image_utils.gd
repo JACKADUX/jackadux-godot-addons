@@ -3,7 +3,6 @@ class_name ImageUtils
 const IMAGE_EXTENSION = ["png", "jpg", "jpeg", "webp", "svg"]
 const IMAGE_FILETER_EXTENSION = ["*.png", "*.jpg", "*.jpeg", "*.webp", "*.svg"]
 
-static var _prev_path := ""
 
 static func is_image_file(path:String) -> bool:
 	return path.get_extension().to_lower()  in IMAGE_EXTENSION
@@ -127,32 +126,11 @@ static func create_texture_from_buffer(byte_array:PackedByteArray, extension:Str
 		return null
 	return ImageTexture.create_from_image(image)
 
-static func file_dialog(title:String="Files", filter=[], mode=DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, current_directory: String="", filename: String="") -> Array:
-	var files = []
-	var blocker = AwaitBloker.new()
-	var _on_folder_selected = func(status:bool, selected_paths:PackedStringArray, selected_filter_index:int):
-		if not status:
-			return
-		files.append_array(selected_paths)
-		blocker.go_on_deferred()
-	
-	DisplayServer.file_dialog_show(title, current_directory, filename,false,
-								mode,
-								filter,
-								_on_folder_selected)
-	await blocker.continued
-	return files
-
-static func open_image_dialog(muilty_files:=false) -> Array:
-	var _dialog_title := "选择图片"
-	var files := []
+static func open_image_dialog(callback :Callable, muilty_files:=false, dialog_title:="选择图片") :
 	if not muilty_files:
-		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILE, _prev_path)
+		FileUtils.open_file_dialog(callback, dialog_title, [",".join(IMAGE_FILETER_EXTENSION)])
 	else:
-		files = await file_dialog(_dialog_title, [",".join(IMAGE_FILETER_EXTENSION)], DisplayServer.FILE_DIALOG_MODE_OPEN_FILES, _prev_path)
-	if files:
-		_prev_path = files[0].get_base_dir()
-	return files
+		FileUtils.open_files_dialog(callback, dialog_title, [",".join(IMAGE_FILETER_EXTENSION)])
 
 ## ADVANCE ----------------------------------------------------------------------------------------
 static func clip_aspect_image(image:Image, aspect_ratio:float) -> Image:
@@ -184,9 +162,33 @@ static func image_sequences_merged(images:Array[Image], x_count:int) -> Image:
 		image.blit_rect(src, rect, dst)
 	return image
 
-
 static func hash_image(image:Image) -> String:
 	var ctx = HashingContext.new()
 	ctx.start(HashingContext.HASH_SHA256)
 	ctx.update(image.get_data())
 	return ctx.finish().hex_encode()
+
+enum BlitMode {BLIT, BLEND}
+static func extend_blit_image(base:Image, src:Image, mask:Image, src_rect:Rect2i, dst:Vector2i, mode:=BlitMode.BLIT) -> Dictionary:
+	# NOTE: 将两个图整合为一张，可以自动扩展超出的部分
+	# NOTE: mask 可以为 null, 为 null 时会调用 blit_rect 方法
+	if not base:
+		base = Image.create_empty(1, 1, false, Image.FORMAT_RGBA8)
+	var base_rect = Rect2i(Vector2i.ZERO, base.get_size())
+	var rect = Rect2i(dst, src_rect.size).merge(base_rect)
+	if not rect.has_area():
+		return {}
+	var image = Image.create_empty(rect.size.x, rect.size.y, false, Image.FORMAT_RGBA8)
+	image.blit_rect(base, base_rect, -rect.position)
+	match mode:
+		BlitMode.BLIT:
+			if mask == null:
+				image.blit_rect(src, src_rect, dst-rect.position)
+			else:
+				image.blit_rect_mask(src, mask, src_rect, dst-rect.position)
+		BlitMode.BLEND:
+			if mask == null:
+				image.blend_rect(src, src_rect, dst-rect.position)
+			else:
+				image.blend_rect_mask(src, mask, src_rect, dst-rect.position)
+	return {"offset": rect.position, "image":image}
