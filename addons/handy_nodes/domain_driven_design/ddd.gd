@@ -67,9 +67,8 @@ class DomainEvent: # 领域事件驱动
 class DomainEventHandler: # 领域事件处理器
 	static func connect_event_handler(sender, handler):
 		assert(handler.has_method("handle_message"))
-		sender.message_sended.connect(func(msg: DomainEvent):
-			#prints(sender, "[Send]:", msg, "[To]:", handler)
-			handler.handle_message(msg)
+		sender.domain_event_raised.connect(func(domain_event: DomainEvent):
+			handler.handle_event(domain_event)
 		)
 	
 class DomainService: # 领域服务处理跨边界逻辑(跨聚合)或复杂业务逻辑
@@ -90,6 +89,8 @@ class AggregateRoot: # 管理一组关联对象的根实体,聚合根管理边�
 		}
 	func deserialize(_data: Dictionary) -> void: 
 		_id = _data.get("id", UUID.v4())
+	
+	
 	
 class Entity: # 具有唯一标识和生命周期的对象
 	var _id:String = UUID.v4()
@@ -125,106 +126,6 @@ class Repository:
 class Factory: pass
 
 
-##
-class EntityViewMapper:
-	# NOTE: Entity.serialize() -> data -> view
-	const META_ENTITY_DATA := "META_ENTITY_DATA"
-	var map :Dictionary[String,int]= {}
-	var _new_view_fn : Callable  # fn() -> Object 
-	var _init_view_fn : Callable # fn(view:Object) -> void
-	var _convert_data_fn : Callable  # fn(entity) -> Dictionary 
-	var _view_update_fn : Callable	# fn(view:Node, entity_data:Dictionary) -> void
-	var _view_container : WeakRef	# fn(view:Node, entity_data:Dictionary) -> void
-	
-	func init_fns(view_container:Node, new_view_fn:Callable, init_view_fn:Callable, convert_data_fn:Callable, view_update_fn:Callable):
-		_view_container = weakref(view_container)
-		_new_view_fn = new_view_fn
-		_init_view_fn = init_view_fn
-		_convert_data_fn = convert_data_fn
-		_view_update_fn = view_update_fn
-	
-	func init_views(entities:Array):
-		clear()
-		for entity in entities:
-			create_view(entity)
-				
-	func update_views(entities:Array):
-		for entity in entities:
-			update_view(entity)
-	
-	## 
-	func new_view() -> Node:
-		return _new_view_fn.call()
-	
-	func create_view(entity) -> Node:
-		return create_view_with_data(_convert_data_fn.call(entity))
-		
-	func delete_view(entity_id:String):
-		if not map.has(entity_id):
-			return 
-		var view = get_view(entity_id)
-		_view_container.get_ref().remove_child(view)
-		view.queue_free()
-		map.erase(entity_id)
-	
-	func update_view(entity):
-		update_view_with_data(_convert_data_fn.call(entity))
-	
-	func get_entity_data(view:Node) -> Dictionary:
-		return view.get_meta(META_ENTITY_DATA, {})
-		
-	func get_entity_id(view:Node) -> String:
-		return view.get_meta(META_ENTITY_DATA, {}).get("id", "")
-	
-	func get_view(entity_id:String) -> Object:
-		return instance_from_id(map.get(entity_id, 0))
-	## 
-	func create_view_with_data(entity_data:Dictionary) :
-		var entity_id = entity_data.get("id", "")
-		if not entity_id:
-			printerr("create_view failed:", "entity_data must contain 'id' key with String value")
-			return 
-		if map.has(entity_id):
-			delete_view(entity_id)
-		var view = _new_view_fn.call()
-		if not view:
-			return
-		map[str(entity_id)] = view.get_instance_id()
-		_view_container.get_ref().add_child(view)
-		view.set_meta(META_ENTITY_DATA, entity_data)
-		_init_view_fn.call(view)
-		_view_update_fn.call(view, entity_data)
-		return view
-		
-	func update_view_with_data(entity_data:Dictionary):
-		if not _view_update_fn:
-			printerr("update_views failed:", "view_update_fn is invalid")
-			return
-		var entity_id = entity_data.get("id")
-		if not entity_id: 
-			printerr("update_views failed:", "entity_data must contain 'id' key with String value")
-			return 
-		var view = instance_from_id(map.get(entity_id, 0))
-		if not view:
-			return
-		view.set_meta(META_ENTITY_DATA, entity_data)
-		_view_update_fn.call(view, entity_data)
-		
-	func clear():
-		map.clear()
-		clear_view_container()
-		
-	func bind_with_id(entity_id:String, view_id:int):
-		map[entity_id] = view_id
-	
-	func unbind_view(entity_id:String):
-		map.erase(entity_id)
-	
-	func clear_view_container():
-		var view_container = _view_container.get_ref()
-		if not view_container:
-			return 
-		for view in view_container.get_children():
-			view_container.remove_child(view)
-			view.queue_free()
-	
+##  
+const ElementIdGroup = preload("element_id_group.gd")
+const ModelViewMapper = preload("model_view_mapper.gd")

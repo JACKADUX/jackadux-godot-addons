@@ -1,8 +1,7 @@
-# class_name CanvasViewer
-extends Control
+class_name CanvasViewer extends Control
 
 signal view_changed(view_zoom:float, view_offset:Vector2)
-signal input_data_updated(input_data:InputData)
+signal mouse_input_data_updated(mouse_input_data:MouseInputData) # NOTE: 只有 InputEventMouse 才会触发
 
 @export var user_camera_controll := true
 @export var fit_view_on_resize := false
@@ -11,7 +10,7 @@ var texture:Texture2D
 
 var camera_component := CameraComponent.new()
 
-var input_data:= InputData.new()
+var mouse_input_data_manager:= MouseInputDataManager.new()
 
 var _view_size := Vector2.ONE
 
@@ -21,8 +20,8 @@ func _ready() -> void:
 			return 
 		fit_view(_view_size)
 	)
-	input_data._viewport = get_viewport()
-
+	mouse_input_data_manager.init_datas(get_viewport())
+	
 func local_map_to_canvas_global(local_pos:Vector2) -> Vector2:
 	#var local_pos = ElementCanvasViewer.get_global_transform().affine_inverse() * get_global_mouse_position()
 	# or local_pos = ElementCanvasViewer.get_local_mouse_position()
@@ -62,8 +61,6 @@ func set_zoom(zoom:float, view_offset:Vector2):
 	update_view()
 
 func update_view():
-	if not camera_component:
-		return
 	queue_redraw()
 	view_changed.emit(camera_component.view_zoom, camera_component.view_offset)
 
@@ -79,8 +76,10 @@ func set_viewport_texuture(viewport:Viewport):
 	set_texture(ImageTexture.create_from_image(viewport.get_texture().get_image()))
 
 func _gui_input(event: InputEvent) -> void:
-	InputData.update_in_mouse(input_data, event, local_map_to_canvas_global(get_local_mouse_position()), camera_component.view_zoom)
-	input_data_updated.emit(input_data)
+	if event is InputEventMouse:
+		mouse_input_data_manager.update_datas(event, local_map_to_canvas_global(get_local_mouse_position()), camera_component.view_zoom)
+		for input_data in mouse_input_data_manager.get_datas(event):
+			mouse_input_data_updated.emit(input_data)
 	if user_camera_controll and CameraComponent.update_with_event(camera_component, event):
 		update_view()
 
@@ -89,9 +88,13 @@ func _draw() -> void:
 		return 
 	draw_set_transform_matrix(camera_component.get_xform())
 	texture.draw(get_canvas_item(), Vector2.ZERO)
+	
 
 class CameraComponent:
-
+	
+	signal zoom_changed
+	signal pan_changed
+	
 	var ZOOM_INCREMENT := 1.1 
 	var MIN_ZOOM_LEVEL := 0.1
 	var MAX_ZOOM_LEVEL := 100
@@ -116,6 +119,7 @@ class CameraComponent:
 	func pan_offset(value:Vector2):
 		""" 将摄像机视图中的世界坐标向 Value 方向偏移"""
 		view_offset += value/view_zoom
+		pan_changed.emit()
 		
 	func zoom_scroll(step:int, zoom_position:Vector2):
 		var local_mouse_position = get_xform().affine_inverse() * zoom_position
@@ -125,6 +129,7 @@ class CameraComponent:
 			return 
 		view_zoom = new_zoom
 		view_offset += get_xform().affine_inverse() * zoom_position - local_mouse_position
+		zoom_changed.emit()
 	
 	static func update_with_event(camera_component:CameraComponent, event:InputEvent) -> bool:
 		if event is InputEventMouseButton:

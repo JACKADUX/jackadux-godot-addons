@@ -1,0 +1,12 @@
+[
+	{
+		"name":"ready",
+		"code": "func _ready() -> void: pass",
+		"icon":"Node"
+	},
+	{
+		"name":"process",
+		"code": "func _process(_dt:float) -> void: pass",
+		"icon":"Node"
+	}
+]

@@ -50,7 +50,8 @@ func _on_button_toggle(on_toggle:bool, item_button:SimpleItemButton):
 		selection_changed.emit()
 		return 
 	if ctrl_pressed:
-		last_pressed = weakref(item_button)
+		item_button.set_pressed_no_signal(on_toggle)
+		selection_changed.emit()
 		 
 	elif shift_pressed and last_pressed.get_ref():
 		var buttons = get_item_buttons()

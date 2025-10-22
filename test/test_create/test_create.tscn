@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cin7olbtwyoat"]
+
+[ext_resource type="Script" uid="uid://car54dgduh4x1" path="res://test/test_create/test_create.gd" id="1_x1n1f"]
+
+[node name="TestCreate" type="PanelContainer"]
+script = ExtResource("1_x1n1f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2

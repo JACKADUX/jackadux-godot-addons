@@ -1,4 +1,4 @@
-extends "../canvas_viewer_indicator.gd"
+extends CanvasViewerIndicator
 
 @export var lines: PackedVector2Array
 @export var colors: PackedColorArray
@@ -20,7 +20,7 @@ func update_lines(p_lines: PackedVector2Array):
 	lines = p_lines
 	queue_redraw()
 
-func _draw_indicator(zoom: float):
+func _draw_indicator():
 	if not lines:
 		return
 	draw_multiline_colors(lines, colors, width, antialiased)

@@ -1,12 +1,39 @@
 @tool
 extends EditorScript
 
-# TODO: 从github直接下载并初始化项目
 const event_code :="""
 ## Domain Events
 class SomeEvent extends DDD.DomainEvent:
 	static func get_event_name(): return "SomeEvent"
 	var prop : String
+"""
+
+const controller_code := """
+class_name SomeController extends DDD.Application
+
+#const Consts := NS_Some.Consts
+#const Events := NS_Some.Events
+
+func handle_domain_event(domain_event: DDD.DomainEvent):
+	prints("[x]domain_event:",domain_event)
+	raise_event(domain_event)
+
+##
+static func create() -> SomeController:
+	var controller = SomeController.new()
+	
+	#controller.register_infrastructure(...)
+	#controller.register_service(...)
+	
+	return controller
+
+
+static var _instance : SomeController
+static func instance() -> SomeController:
+	if not _instance:
+		_instance = SomeController.create()
+	return _instance
+
 """
 
 const interface_code := """
@@ -61,12 +88,12 @@ extends DDD.DomainService
 """
 
 func _run() -> void:
-	init_domain("pixel_graph", "res://domain")
+	init_domain("pixel_graph", "res://model")
 	
 func init_domain(domain:String, root_dir:String):
 	# init_domain("image_edit", "res://model")
 	var file_system :=  EditorInterface.get_resource_filesystem()
-	var dirs := ["aggregate", "infrastructure", "service", "misc"]
+	var dirs := ["controller", "aggregate", "infrastructure", "service", "misc"]
 	root_dir = root_dir.path_join(domain)
 	DirAccess.make_dir_recursive_absolute(root_dir)
 	for dir in dirs:
@@ -77,18 +104,23 @@ func init_domain(domain:String, root_dir:String):
 		DirAccess.make_dir_recursive_absolute(path)
 		if dir == "misc":
 			continue
-		ResourceSaver.save(GDScript.new(), path.path_join("_init.gd"))
 		match dir:
+			"controller":
+				var script = GDScript.new()
+				script.source_code = controller_code
+				ResourceSaver.save(script, path.path_join("some_controller.gd"))
 			"aggregate":
+				ResourceSaver.save(GDScript.new(), path.path_join("_init.gd"))
 				var script = GDScript.new()
 				script.source_code = aggregate_root_code
 				ResourceSaver.save(script, path.path_join("some_aggregate.gd"))
 			"infrastructure":
+				ResourceSaver.save(GDScript.new(), path.path_join("_init.gd"))
 				var script = GDScript.new()
 				script.source_code = path_access_code
 				ResourceSaver.save(script, path.path_join("some_path_access.gd"))
-			
 			"service":
+				ResourceSaver.save(GDScript.new(), path.path_join("_init.gd"))
 				var script = GDScript.new()
 				script.source_code = service_code
 				ResourceSaver.save(script, path.path_join("some_service.gd"))

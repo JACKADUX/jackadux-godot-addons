@@ -1,5 +1,7 @@
 class_name ThreadHelper extends Thread
 
+# WARNING: thread 的 start 和 stop 通常是比较慢的，避免频繁的调用
+
 var _thread_break := true
 
 func bind_with(node:Node):

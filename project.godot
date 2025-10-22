@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="JACKADUX Godot Addons"
-run/main_scene="uid://ciyo14lnfq2fk"
+run/main_scene="uid://5l7v2vc6hro8"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -30,14 +30,13 @@ project/assembly_name="JACKADUX Godot Addons"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/commander/plugin.cfg", "res://addons/handy_nodes/plugin.cfg", "res://addons/icon_quick_access/plugin.cfg", "res://addons/namespace_manager/plugin.cfg", "res://addons/quick_ui/plugin.cfg")
+enabled=PackedStringArray("res://addons/commander/plugin.cfg", "res://addons/explore-editor-theme/plugin.cfg", "res://addons/handy_nodes/plugin.cfg", "res://addons/icon_quick_access/plugin.cfg", "res://addons/namespace_manager/plugin.cfg", "res://addons/quick_ui/plugin.cfg", "res://addons/ui_builder/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://addons/handy_nodes/": "orange",
-"res://test/": "red",
-"res://test/test_package/": "teal"
+"res://test/": "red"
 }
 
 [gui]

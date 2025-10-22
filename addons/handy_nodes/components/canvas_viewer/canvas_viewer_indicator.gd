@@ -1,22 +1,28 @@
-# class_name CanvasIndicator 
-extends Control
+class_name CanvasViewerIndicator extends Control
 
-const CanvasViewer = preload("canvas_viewer.gd")
 @export var canvas_viewer:CanvasViewer
 
 func _ready() -> void:
 	if not canvas_viewer:
 		canvas_viewer = get_parent()
-	canvas_viewer.view_changed.connect(func(zo,of):
-		queue_redraw()
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	canvas_viewer.view_changed.connect(func(_zoom,_offset):
+		on_view_changed()
 	)
+	
+func on_view_changed():
+	queue_redraw()
+
+func get_canvas_xform() -> Transform2D:
+	return canvas_viewer.camera_component.get_xform()
+
+func get_zoom() -> float:
+	return canvas_viewer.camera_component.view_zoom
 
 func _draw() -> void:
-	var xform = canvas_viewer.camera_component.get_xform()
-	var zoom = canvas_viewer.camera_component.view_zoom
-	draw_set_transform_matrix(xform)
-	_draw_indicator(zoom)
+	draw_set_transform_matrix(get_canvas_xform())
+	_draw_indicator()
 
-func _draw_indicator(zoom:float):
+func _draw_indicator():
 	pass
 	

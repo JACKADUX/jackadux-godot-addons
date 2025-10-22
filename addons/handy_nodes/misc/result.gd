@@ -1,6 +1,6 @@
 class_name Result
 
-signal any
+signal finished
 
 enum ResultType {
 	OK,
@@ -41,8 +41,11 @@ func get_message() -> String:
 func is_ok() -> bool:
 	return _type == ResultType.OK
 
+func raise_finished():
+	finished.emit()
+
 static func OK(data:Dictionary, msg:="") -> Result:
 	return Result.new().set_type(ResultType.OK).set_data(data).set_message(msg)
 
-static func FAILED(msg:="")-> Result:
-	return Result.new().set_type(ResultType.FAILED).set_message(msg)
+static func FAILED(msg:="", data:Dictionary={})-> Result:
+	return Result.new().set_type(ResultType.FAILED).set_message(msg).set_data(data)

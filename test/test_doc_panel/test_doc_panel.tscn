@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://50sgkno3eqrs"]
+
+[ext_resource type="Script" uid="uid://dcf3hgc5j8aqx" path="res://test/test_doc_panel/test_doc_panel.gd" id="1_0sjd5"]
+[ext_resource type="Script" uid="uid://dycrycaw4jtc" path="res://test/test_doc_panel/doc_container.gd" id="2_dptso"]
+[ext_resource type="Texture2D" uid="uid://co6mwmkgbft4n" path="res://icon.svg" id="3_pog0h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pog0h"]
+bg_color = Color(0.6117647, 0.44632354, 0.18823528, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dptso"]
+bg_color = Color(0.18685913, 0.45337293, 0.61328125, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljf03"]
+bg_color = Color(0.28088233, 0.6117647, 0.18823528, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hg5y"]
+bg_color = Color(0.6117647, 0.2775735, 0.18823528, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbvmr"]
+bg_color = Color(0.57867646, 0.6117647, 0.18823528, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TestDocPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0sjd5")
+
+[node name="DocContainer3" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -324.0
+offset_right = 520.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_dptso")
+style_box = SubResource("StyleBoxFlat_pog0h")
+widget_icon = ExtResource("3_pog0h")
+
+[node name="DocContainer2" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -510.0
+offset_top = -191.0
+offset_right = -165.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_dptso")
+style_box = SubResource("StyleBoxFlat_dptso")
+widget_icon = ExtResource("3_pog0h")
+
+[node name="DocContainer4" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = -197.0
+offset_right = 610.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_dptso")
+style_box = SubResource("StyleBoxFlat_ljf03")
+widget_icon = ExtResource("3_pog0h")
+
+[node name="DocContainer6" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = 142.0
+offset_right = 193.0
+offset_bottom = 442.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_dptso")
+style_box = SubResource("StyleBoxFlat_5hg5y")
+widget_icon = ExtResource("3_pog0h")
+
+[node name="DocContainer7" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 129.0
+offset_right = 610.0
+offset_bottom = 429.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_dptso")
+style_box = SubResource("StyleBoxFlat_fbvmr")
+widget_icon = ExtResource("3_pog0h")

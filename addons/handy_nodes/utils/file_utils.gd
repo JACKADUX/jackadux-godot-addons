@@ -141,3 +141,32 @@ class NaturalSort:
 
 	static func sort(files:Array)->Array:
 		return NaturalSort.new().sort_files(files)
+
+
+class SimpleZipper:
+	var zippacker :ZIPPacker= null
+	func open(path:String):
+		zippacker = ZIPPacker.new()
+		return zippacker.open(path)
+	
+	func write_file(path:String, zip_file:=""):
+		assert(path and FileAccess.file_exists(path), "file not exists:%s"%path)
+		if not zip_file:
+			zip_file = path.get_file()
+		zippacker.start_file(zip_file)
+		zippacker.write_file(FileAccess.get_file_as_bytes(path))
+		zippacker.close_file()
+	
+	func write_folder(path:String, zip_folder:=""):
+		assert(path and DirAccess.dir_exists_absolute(path), "folder not exists:%s"%path)
+		if not zip_folder:
+			zip_folder = path.get_file()
+		for folder in DirAccess.get_directories_at(path):
+			write_folder(path.path_join(folder), zip_folder.path_join(folder))
+		for file in DirAccess.get_files_at(path):
+			write_file(path.path_join(file), zip_folder.path_join(file))
+		return 
+		
+	func close():
+		zippacker.close()
+		zippacker = null
