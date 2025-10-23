@@ -1,6 +1,9 @@
 #class SceneTreeContextPlugin 
 extends EditorContextMenuPlugin
 
+const PropertyPromote = preload("uid://bhaxmspj4f1fy")
+
+
 func toaster_push_warning(text):
 	EditorInterface.get_editor_toaster().push_toast(str(text), EditorToaster.SEVERITY_WARNING)
 	
@@ -16,7 +19,8 @@ func _popup_menu(paths:PackedStringArray):
 		var prop_path = inspector.get_selected_path()
 		var title = "Promote Property: <no select>" if not prop_path else "Promote Property: %s"%prop_path
 		add_context_menu_item(title, func(_obj): 
-			create_meta(object, prop_path)
+			PropertyPromote.create_meta(object, prop_path)
+			_add_promoter(object)
 			, promote_icon
 		)
 	#quick select
@@ -51,55 +55,23 @@ func _popup_menu(paths:PackedStringArray):
 		id_map[id] = prop
 		
 	popup_menu.id_pressed.connect(func(id):
-		create_meta(object, id_map[id].name)
+		PropertyPromote.create_meta(object, id_map[id].name)
+		_add_promoter(object)
 	)
 	add_context_submenu_item("Select Promote Property", popup_menu, promote_icon)
 
-func create_meta(object, prop_path:String):
-	if not object or not object.unique_name_in_owner:
-		toaster_push_warning("node must be unique in scene (Access as Unique Name enabled)")
-		return 
-	if not prop_path:
-		toaster_push_warning("Select a property in Inspector first!")
-		return 
-	var root_object :Node= object.owner
-	var prop = "%s____%s"%[prop_path, object.name]
-	var value = object.get(prop_path)
-	if "/" in prop_path:
-		prop = prop.replace("/", "___") 
-		var theme_pair = prop_path.split("/")
-		match theme_pair[0]:
-			"theme_override_colors": value = object.get_theme_color(theme_pair[1])
-			"theme_override_icons": value = object.get_theme_icon(theme_pair[1])
-			"theme_override_constants": value = object.get_theme_constant(theme_pair[1])
-			"theme_override_fonts": value = object.get_theme_font(theme_pair[1])
-			"theme_override_font_sizes": value = object.get_theme_font_size(theme_pair[1])
-			"theme_override_styles": value = object.get_theme_stylebox(theme_pair[1])
-	root_object.set_meta(prop, value)
-	
 
 func _on_property_edited(property:String):
-	if property.begins_with("metadata/"):
-		var inspector = EditorInterface.get_inspector()
-		var object :Control= inspector.get_edited_object()
-		var rel_property = property.trim_prefix("metadata/")
-		var value = object.get(property)
-		var list = rel_property.split("____")
-		if list.size() != 2:
-			return 
-		var node_prop =list[0]
-		var node_name =list[1]
-		var node = object.get_node("%"+node_name)
-		if not node:
-			return 
-		if "___" in node_prop:
-			var theme_pair = node_prop.split("___")
-			match theme_pair[0]:
-				"theme_override_colors": node.add_theme_color_override(theme_pair[1], value)
-				"theme_override_icons": node.add_theme_icon_override(theme_pair[1], value)
-				"theme_override_constants": node.add_theme_constant_override(theme_pair[1], value)
-				"theme_override_fonts": node.add_theme_font_override(theme_pair[1], value)
-				"theme_override_font_sizes": node.add_theme_font_size_override(theme_pair[1], value)
-				"theme_override_styles": node.add_theme_stylebox_override(theme_pair[1], value)
-		else:
-			node.set(node_prop, value)
+	if not property.begins_with("metadata/"):
+		return 
+	var inspector = EditorInterface.get_inspector()
+	var object :Control= inspector.get_edited_object()
+	PropertyPromote.update_meta_property(object, property)
+
+func _add_promoter(object):
+	if not object.owner.get_node_or_null("%"+PropertyPromote.NAME):
+		var pp = PropertyPromote.new()
+		pp.parent = object.owner
+		pp.name = PropertyPromote.NAME
+		object.owner.add_child(pp)
+		pp.owner = object.owner

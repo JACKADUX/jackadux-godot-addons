@@ -1,9 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://5l7v2vc6hro8"]
+[gd_scene load_steps=2 format=3 uid="uid://5l7v2vc6hro8"]
 
 [ext_resource type="Script" uid="uid://cyfygk2k02nci" path="res://addons/ui_builder/ui_builder_panel.gd" id="1_3tbag"]
-[ext_resource type="PackedScene" uid="uid://cabtlaql8myq4" path="res://addons/ui_builder/test/test_meta/test_meta.tscn" id="2_sh88d"]
-[ext_resource type="Texture2D" uid="uid://co6mwmkgbft4n" path="res://icon.svg" id="3_m8eta"]
-[ext_resource type="Texture2D" uid="uid://beci3cakstu4u" path="res://assets/icons/settings.svg" id="4_hthjq"]
 
 [node name="UiBuilderPanel" type="PanelContainer"]
 anchors_preset = 15
@@ -41,15 +38,3 @@ size_flags_horizontal = 3
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TestMeta" parent="MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2" instance=ExtResource("2_sh88d")]
-layout_mode = 2
-metadata/text____Button = "Bbbbbbb"
-metadata/texture____TextureRect = ExtResource("3_m8eta")
-metadata/color____ColorRect2 = Color(0.28819442, 0.85557723, 0.8645833, 1)
-
-[node name="TestMeta2" parent="MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2" instance=ExtResource("2_sh88d")]
-layout_mode = 2
-metadata/text____Button = "CCCC"
-metadata/texture____TextureRect = ExtResource("4_hthjq")
-metadata/color____ColorRect2 = Color(0.8697917, 0.049831834, 0.049831834, 1)

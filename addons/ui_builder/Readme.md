@@ -5,7 +5,7 @@
 - Play This Scene : right_click '.tscn' file
 
 
-# scene tree context
+# scene tree context 
 - Property Promote : by click property in Inspector first, you can quick promote when right_click scene node
 - Select Property Promote : right_click scene node
 
