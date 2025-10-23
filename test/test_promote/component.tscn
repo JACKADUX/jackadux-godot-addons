@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://gpra66y8bxrh"]
+
+[ext_resource type="Script" uid="uid://bhaxmspj4f1fy" path="res://addons/ui_builder/plugins/property_promote.gd" id="1_g33kj"]
+
+[sub_resource type="Texture2D" id="Texture2D_jvr4s"]
+resource_local_to_scene = false
+resource_name = ""
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 146.0
+offset_bottom = 48.0
+metadata/texture____TextureRect = SubResource("Texture2D_jvr4s")
+metadata/text____Label = "info"
+metadata/text____Button = "test"
+metadata/color____ColorRect = Color(1, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = SubResource("Texture2D_jvr4s")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "info"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "test"
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="PropertyPromoter" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_g33kj")

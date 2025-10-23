@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://1bbre5kew64s"]
+
+[ext_resource type="PackedScene" uid="uid://gpra66y8bxrh" path="res://test/test_promote/component.tscn" id="1_rh1m3"]
+[ext_resource type="Texture2D" uid="uid://co6mwmkgbft4n" path="res://icon.svg" id="2_tv3wm"]
+[ext_resource type="Texture2D" uid="uid://beci3cakstu4u" path="res://assets/icons/settings.svg" id="3_cg157"]
+
+[node name="TestPromote" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" parent="." instance=ExtResource("1_rh1m3")]
+layout_mode = 0
+metadata/texture____TextureRect = ExtResource("2_tv3wm")
+metadata/text____Label = "123"
+metadata/text____Button = "OK"
+metadata/color____ColorRect = Color(0.23924637, 0.921875, 0.11283364, 1)
+
+[node name="PanelContainer2" parent="." instance=ExtResource("1_rh1m3")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 149.0
+offset_right = 385.0
+offset_bottom = 277.0
+metadata/texture____TextureRect = ExtResource("3_cg157")
+metadata/text____Label = "Setting"
+metadata/text____Button = "Cancel"
+metadata/color____ColorRect = Color(0.92156863, 0.41666672, 0.1137255, 1)
