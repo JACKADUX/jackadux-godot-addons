@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnbfkewpi2k2y"]
+
+[ext_resource type="Script" path="res://test/test_create/test22/test22.gd" id="1_5s0ct"]
+
+[node name="Test22" type="PanelContainer"]
+script = ExtResource("1_5s0ct")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cr1y5t2ln4rbu"]
 
-[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="1_v5ded"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/ui_builder/misc/super_container.gd" id="1_v5ded"]
 
 [node name="BaseScrollContainer" type="ScrollContainer"]
 anchors_preset = 15

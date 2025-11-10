@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://gpra66y8bxrh"]
 
-[ext_resource type="Script" uid="uid://bhaxmspj4f1fy" path="res://addons/ui_builder/plugins/property_promote.gd" id="1_g33kj"]
+[ext_resource type="Script" uid="uid://bhaxmspj4f1fy" path="res://addons/test/plugins/property_promote.gd" id="1_g33kj"]
 
 [sub_resource type="Texture2D" id="Texture2D_jvr4s"]
 resource_local_to_scene = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2vhnp566sfpy"]
 
-[ext_resource type="Script" path="res://addons/explore-editor-theme/ExplorerDialog.gd" id="1"]
+[ext_resource type="Script" uid="uid://bod46pyy5lgqm" path="res://addons/explore-editor-theme/ExplorerDialog.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dtnrjguhery8r" path="res://addons/explore-editor-theme/tabs/EditorIcons.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dti6srt6g56ce" path="res://addons/explore-editor-theme/tabs/EditorColors.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cqum8s71o23cy" path="res://addons/explore-editor-theme/tabs/EditorConstants.tscn" id="4"]
@@ -10,6 +10,7 @@
 [sub_resource type="Theme" id="1"]
 
 [node name="ExplorerDialog" type="Window"]
+oversampling_override = 1.0
 title = "Editor Theme Explorer"
 size = Vector2i(996, 640)
 visible = false

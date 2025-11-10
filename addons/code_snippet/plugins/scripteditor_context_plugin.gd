@@ -1,20 +1,24 @@
 #class_name ScriptEditorContextPlugin
 extends EditorContextMenuPlugin
-
+ 
 const ProjectClassDB = preload("uid://c72n7w0j0tapq")
 
 const common_signal_code = """{0}.{1}.connect(func({2}): pass)"""
+var json_path :String:
+	get: return get_script().resource_path.get_base_dir().get_base_dir().path_join("snippet.json")
 
 func _popup_menu(paths:PackedStringArray):
 	if paths.size() != 1:
 		return 
-
 	var codeedit :CodeEdit= Engine.get_main_loop().root.get_node(paths[0]);
 	var selected_text = codeedit.get_selected_text()
 	var theme = EditorInterface.get_base_control()
 	var signal_icon = theme.get_theme_icon("Signal", "EditorIcons")
 	var signals_icon = theme.get_theme_icon("Signals", "EditorIcons")
-	
+	if not selected_text:
+		# NOTE: 会造成自动选择
+		codeedit.select_word_under_caret()
+		selected_text = codeedit.get_selected_text()
 	if selected_text:
 		var res_type = find_type(selected_text, codeedit.text)
 		if res_type and ClassDB.class_exists(res_type):
@@ -30,9 +34,9 @@ func _popup_menu(paths:PackedStringArray):
 	var popup_menu = PopupMenu.new()
 	popup_menu.add_icon_item(signals_icon, "Signal Lambda", 100)
 	#
-	var json_path = "res://code_snippet.json"
 	var id_start_json = 200
 	var id_map := {}
+
 	if FileAccess.file_exists(json_path):
 		var datas = JSON.parse_string(FileAccess.get_file_as_string(json_path))
 		if datas:

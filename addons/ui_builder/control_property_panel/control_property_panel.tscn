@@ -1,0 +1,238 @@
+[gd_scene load_steps=17 format=3 uid="uid://vwhqlqcfov01"]
+
+[ext_resource type="Script" uid="uid://bqxhjeqsgqbj8" path="res://addons/ui_builder/control_property_panel/control_property_panel.gd" id="1_1ehdh"]
+[ext_resource type="Texture2D" uid="uid://ccjkt567mkj6h" path="res://addons/ui_builder/icons/mouse_stop.svg" id="2_qpbgn"]
+[ext_resource type="Texture2D" uid="uid://cv8c0wy8syils" path="res://addons/ui_builder/icons/focus.svg" id="3_axs2o"]
+[ext_resource type="Texture2D" uid="uid://dm71s74l1bu8t" path="res://addons/ui_builder/icons/cursor/arrow.png" id="4_qpbgn"]
+[ext_resource type="Texture2D" uid="uid://bupw4s367rfty" path="res://addons/ui_builder/icons/add_node.svg" id="5_qpbgn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpbgn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axs2o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08056"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1p77n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0csdg"]
+
+[sub_resource type="Theme" id="Theme_08056"]
+Button/constants/icon_max_width = 16
+Button/font_sizes/font_size = 11
+align_button/base_type = &"Button"
+align_button/styles/focus = SubResource("StyleBoxEmpty_qpbgn")
+align_button/styles/hover = SubResource("StyleBoxEmpty_axs2o")
+align_button/styles/hover_pressed = SubResource("StyleBoxEmpty_08056")
+align_button/styles/normal = SubResource("StyleBoxEmpty_1p77n")
+align_button/styles/pressed = SubResource("StyleBoxEmpty_0csdg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ehdh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axs2o"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.05859375, 0.05859375, 0.05859375, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qpbgn"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpbgn"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.05859375, 0.05859375, 0.05859375, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_axs2o"]
+allow_unpress = true
+
+[node name="ControlPropertyPanel" type="PanelContainer"]
+offset_right = 549.0
+offset_bottom = 16.0
+size_flags_horizontal = 10
+theme = SubResource("Theme_08056")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1ehdh")
+script = ExtResource("1_1ehdh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_axs2o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AlignLeftButton" type="Button" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qpbgn")
+text = "L"
+
+[node name="AlignHCenterButton" type="Button" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qpbgn")
+text = "C"
+
+[node name="AlignRightButton" type="Button" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qpbgn")
+text = "R"
+
+[node name="HFillButton" type="Button" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qpbgn")
+text = "F"
+
+[node name="HExpandButton" type="CheckButton" parent="HBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/icon_max_width = 32
+text = "H Expand"
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpbgn")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AlignTopButton" type="Button" parent="HBoxContainer/PanelContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+focus_mode = 0
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_axs2o")
+text = "T"
+
+[node name="AlignVCenterButton" type="Button" parent="HBoxContainer/PanelContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_axs2o")
+text = "C"
+
+[node name="AlignBottomButton" type="Button" parent="HBoxContainer/PanelContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_axs2o")
+text = "B"
+
+[node name="VFillButton" type="Button" parent="HBoxContainer/PanelContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_type_variation = &"align_button"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_axs2o")
+text = "F"
+
+[node name="VExpandButton" type="CheckButton" parent="HBoxContainer/PanelContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/icon_max_width = 32
+text = "V Expand"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="FilterButton" type="Button" parent="HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "Mouse Filter"
+text = "Stop"
+icon = ExtResource("2_qpbgn")
+
+[node name="FocusButton" type="Button" parent="HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "Focus"
+focus_mode = 0
+mouse_filter = 1
+text = "Focus"
+icon = ExtResource("3_axs2o")
+
+[node name="CursorButton" type="Button" parent="HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "Cursor"
+text = "Cursor"
+icon = ExtResource("4_qpbgn")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NodesPanelButton" type="Button" parent="HBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 6
+tooltip_text = "Add Nodes Panel"
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("5_qpbgn")

@@ -1,6 +1,13 @@
 #class FileSystemContextPlugin 
 extends EditorContextMenuPlugin
 
+const script_tempalte = """extends %s\n\nfunc _ready(): pass"""
+const preset := [
+	{"class_name": "Node", "script": script_tempalte},
+	{"class_name": "Node2D", "script": script_tempalte},
+	{"class_name": "Control", "script": script_tempalte},
+	{"class_name": "PanelContainer", "script": script_tempalte},
+]
 
 func _popup_menu(paths:PackedStringArray):
 	if paths.size() == 1:
@@ -14,26 +21,21 @@ func _popup_menu(paths:PackedStringArray):
 		if DirAccess.dir_exists_absolute(path):
 			var theme = EditorInterface.get_base_control()
 			var popup_menu = PopupMenu.new()
-			popup_menu.add_icon_item(theme.get_theme_icon("Node", "EditorIcons"), "Node", 100)
-			popup_menu.add_icon_item(theme.get_theme_icon("Node2D", "EditorIcons"), "Node2D", 101)
-			popup_menu.add_icon_item(theme.get_theme_icon("Control", "EditorIcons"), "Control", 102)
-			popup_menu.add_icon_item(theme.get_theme_icon("PanelContainer", "EditorIcons"), "PanelContainer", 103)
+			var id_start = 100
+			var index = 0
+			
+			for pdata in preset:
+				var _class_name = pdata.class_name
+				popup_menu.add_icon_item(theme.get_theme_icon(_class_name, "EditorIcons"), _class_name, id_start+index)
+				index += 1
+				
 			popup_menu.id_pressed.connect(func(id:int):
 				var code :String= """"""
 				var node:Node
-				match id:
-					100:
-						node = Node.new()
-						code = """extends Node\n\nfunc _ready(): pass"""
-					101:
-						node = Node2D.new()
-						code = """extends Node2D\n\nfunc _ready(): pass"""
-					102:
-						node = Control.new()
-						code = """extends Control\n\nfunc _ready(): pass"""
-					103:
-						node = PanelContainer.new()
-						code = """extends PanelContainer\n\nfunc _ready(): pass"""
+				var _idx = id-id_start
+				var pdata = preset[_idx]
+				node = ClassDB.instantiate(pdata.class_name)
+				code = pdata.script%pdata.class_name
 				DisplayServer.dialog_input_text("Create Scene:", "cancel by return empty", "", func(text:String):
 					create_scene(text, path, node, code)
 				)

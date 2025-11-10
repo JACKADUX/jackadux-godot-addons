@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnd8ki0ekefnv"]
 
 [ext_resource type="Script" uid="uid://74lrym6k1myx" path="res://test/test_calculate/test_calculate.gd" id="1_wrlo6"]
-[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="2_3rn5v"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/ui_builder/misc/super_container.gd" id="2_3rn5v"]
 [ext_resource type="PackedScene" uid="uid://b085j88bw4ik0" path="res://addons/quick_ui/scenes/base_panel_container.tscn" id="3_2i3dm"]
 
 [node name="TestCalculate" type="Control"]

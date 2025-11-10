@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxr1c1k422ba2"]
+
+[ext_resource type="Script" uid="uid://ce48aow1iwynm" path="res://addons/ui_builder/node_panel/node_panel.gd" id="1_qj6wb"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/ui_builder/misc/super_container.gd" id="2_aam67"]
+
+[node name="NodePanel" type="PanelContainer"]
+custom_minimum_size = Vector2(32, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 40.0
+grow_vertical = 2
+script = ExtResource("1_qj6wb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ContainerNodes" type="VBoxContainer" parent="MarginContainer/HBoxContainer2/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+script = ExtResource("2_aam67")
+width = 0
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="NContainerNodes" type="VBoxContainer" parent="MarginContainer/HBoxContainer2/ScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+script = ExtResource("2_aam67")
+width = 0

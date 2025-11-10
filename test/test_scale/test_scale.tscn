@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ciyo14lnfq2fk"]
 
 [ext_resource type="Script" uid="uid://dh1gop80dxdqs" path="res://test/test_scale/test_scale.gd" id="1_kkiak"]
-[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="2_wxel3"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/ui_builder/misc/super_container.gd" id="2_wxel3"]
 [ext_resource type="PackedScene" uid="uid://b7o2uicd33dej" path="res://test/test_mvc2/test_mvc_2.tscn" id="3_qbkfe"]
 [ext_resource type="Script" uid="uid://cpfxxrhqo3wo1" path="res://test/test_mvc2/test_mvc_2.gd" id="4_rv0jq"]
 [ext_resource type="Script" uid="uid://dr54s1dgkvkwe" path="res://addons/handy_nodes/objects/stylebox_circle.gd" id="5_gj0di"]

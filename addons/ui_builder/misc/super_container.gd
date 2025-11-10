@@ -13,7 +13,7 @@ signal type_changed(node:Node)
 	set(v):
 		width = v
 		queue_redraw()
-var nodes = ["VBoxContainer","HBoxContainer","VFlowContainer","HFlowContainer", "VSplitContainer", "HSplitContainer","GridContainer"]
+const nodes = ["VBoxContainer","HBoxContainer","VFlowContainer","HFlowContainer", "VSplitContainer", "HSplitContainer","GridContainer"]
 
 func clear():
 	for child in get_children():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b085j88bw4ik0"]
 
-[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/quick_ui/misc/super_container.gd" id="1_lrt1l"]
+[ext_resource type="Script" uid="uid://dpxfyfavwj25g" path="res://addons/ui_builder/misc/super_container.gd" id="1_lrt1l"]
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 15

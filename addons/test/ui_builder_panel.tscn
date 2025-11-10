@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5l7v2vc6hro8"]
 
-[ext_resource type="Script" uid="uid://cyfygk2k02nci" path="res://addons/ui_builder/ui_builder_panel.gd" id="1_3tbag"]
+[ext_resource type="Script" uid="uid://cyfygk2k02nci" path="res://addons/test/ui_builder_panel.gd" id="1_3tbag"]
 
 [node name="UiBuilderPanel" type="PanelContainer"]
 anchors_preset = 15

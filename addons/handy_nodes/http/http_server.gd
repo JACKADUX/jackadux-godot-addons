@@ -5,7 +5,7 @@ class_name HttpServer
 const GROUP_NAME:="HttpServer"
 
 static var root:Node:
-	get: return Engine.get_main_loop().current_scene
+	get: return Engine.get_main_loop().current_scene # root
 
 static func new_timer_http_request(wait_time:float=1, timeout:=0) -> HttpRequestTimer:
 	var thr := HttpRequestTimer.create()
